@@ -45,6 +45,8 @@ public class MoveHeinz : MonoBehaviour {
 	float armprev = 0;
 	int armTurnFrameCounter;
 	RaycastHit hit;
+	ParticleSystem beamLine;
+	GameObject beamPoint;
 
 	//controller stuff
 	CharacterController controller;
@@ -58,6 +60,9 @@ public class MoveHeinz : MonoBehaviour {
 		forearm = arm.Find("Bone.008");
 		hand = forearm.Find("Bone.009");
 		cameraT = Camera.main.transform;
+		beamPoint = GameObject.Find("BeamPoint");
+		beamLine = beamPoint.GetComponent<ParticleSystem>();
+		
 		//animator.speed = 0.5f;
 	}
 
@@ -69,11 +74,14 @@ public class MoveHeinz : MonoBehaviour {
 			move();
 		}		
 		attack();
-		if(isAttacking){
-			launchAttack();
+		
+		launchAttack();
+		
+		print(beamLine.isPlaying);
+		if(beamLine.isPlaying){
+			Debug.DrawRay(transform.position, Vector3.up*100,Color.blue);
 		}
-		print(outFly);
-		Debug.DrawRay(wandTip.transform.position, !flying?(cameraT.forward*100):transform.forward*100);
+		//Debug.DrawRay(wandTip.transform.position, !flying?(cameraT.forward*100):transform.forward*100);
 	}
 
 	void move(){
@@ -200,6 +208,11 @@ public class MoveHeinz : MonoBehaviour {
 
 	void launchAttack(){
 		if(isAttacking){
+			beamPoint.transform.position = wandTip.transform.position;
+			if(!beamLine.isEmitting){
+				beamLine.Play();
+			}
+			beamLine.transform.forward = cameraT.forward;
 			if(Physics.Raycast(wandTip.transform.position, cameraT.forward, out hit))
  			{
      			GameObject block = hit.collider.gameObject;
@@ -207,7 +220,12 @@ public class MoveHeinz : MonoBehaviour {
 					Destroy(block);
 				}
  			}
+		}else{
+			if(!beamLine.isStopped){
+				beamLine.Stop();
+			}
 		}
+
 	}
 
 	void rotateArm(Vector3 forward, Vector3 inputDir){
