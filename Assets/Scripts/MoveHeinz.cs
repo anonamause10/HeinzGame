@@ -47,6 +47,7 @@ public class MoveHeinz : MonoBehaviour {
 	RaycastHit hit;
 	GameObject spell;
 	public GameObject currSpell;
+	LineRenderer spellLine;
 
 	//controller stuff
 	CharacterController controller;
@@ -61,6 +62,7 @@ public class MoveHeinz : MonoBehaviour {
 		hand = forearm.Find("Bone.009");
 		cameraT = Camera.main.transform;
 		spell = (GameObject)Resources.Load("Prefabs/BeamPoint");
+		spellLine = wandTip.GetComponent<LineRenderer>();
 		
 		//animator.speed = 0.5f;
 	}
@@ -205,11 +207,14 @@ public class MoveHeinz : MonoBehaviour {
 
 	void launchAttack(){
 		if(isAttacking){
+			/*
 			if(currSpell==null){
 				currSpell = Instantiate(spell,wandTip.transform.position,Quaternion.identity) as GameObject;
 			}else if(!currSpell.GetComponent<Spell>().going){
 				currSpell = Instantiate(spell,wandTip.transform.position,Quaternion.identity) as GameObject;
-			}
+			}*/
+			spellLine.SetPosition(0,wandTip.transform.position);
+			spellLine.SetPosition(1,cameraT.position+cameraT.forward*100);
 			if(Physics.Raycast(wandTip.transform.position, cameraT.forward, out hit))
  			{
      			GameObject block = hit.collider.gameObject;
