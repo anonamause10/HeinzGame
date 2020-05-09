@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class Spell : MonoBehaviour
 {
-    public ParticleSystem beamLine;
     public MoveHeinz player;
     public bool going = true;
     public bool buff;//spell that boosts player stats or not
     
     
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
-        beamLine = GetComponent<ParticleSystem>();
         player = GameObject.Find("paris").GetComponent<MoveHeinz>();
     }
 

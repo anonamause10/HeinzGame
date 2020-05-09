@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Beam : Spell
+public class SpellBeam : Spell
 {
     public Vector3 rotdamp = Vector3.zero;
-    public ParticleSystem beamLine;
+    public SpellBeam beam;
+    public Transform beamStart;
 
     public override void Start(){
         player = GameObject.Find("paris").GetComponent<MoveHeinz>();
-        beamLine = GetComponent<ParticleSystem>();
+        beam = GetComponent<SpellBeam>();
     }
+
 
     public override void LateUpdate()
     {
@@ -25,23 +27,18 @@ public class Beam : Spell
     public override void useEffect(){
         if(going){
             //print("active");
-            transform.position = player.wandTip.transform.position;
-            transform.forward = player.cameraT.forward*100;//Vector3.SmoothDamp(transform.forward, player.cameraT.forward,ref rotdamp, 0.2f);
+
+            transform.up = player.cameraT.forward*100;//Vector3.SmoothDamp(transform.forward, player.cameraT.forward,ref rotdamp, 0.2f);
+            transform.position = (player.wandTip.transform.position);
         }else{
             //print("no");
         }
-		if(!beamLine.isEmitting){
-			beamLine.Play();
-		}
     }
 
     public override void stopEffect(){
         going = false;
-        if(!beamLine.isStopped){
-			beamLine.Stop();
-		}
-        if(!beamLine.IsAlive()){
-            Destroy(gameObject);
-        }
+       
+        Destroy(gameObject);
+        
     }
 }

@@ -61,7 +61,7 @@ public class MoveHeinz : MonoBehaviour {
 		forearm = arm.Find("Bone.008");
 		hand = forearm.Find("Bone.009");
 		cameraT = Camera.main.transform;
-		spell = (GameObject)Resources.Load("Prefabs/BeamPoint");
+		spell = (GameObject)Resources.Load("Prefabs/SpellBeam");
 		spellLine = wandTip.GetComponent<LineRenderer>();
 		
 		//animator.speed = 0.5f;
@@ -78,7 +78,7 @@ public class MoveHeinz : MonoBehaviour {
 		
 		launchAttack();
 		
-		print(spell.GetComponent<Beam>().going);
+		print(spell.GetComponent<SpellBeam>().going);
 		
 		//Debug.DrawRay(wandTip.transform.position, !flying?(cameraT.forward*100):transform.forward*100);
 	}
@@ -207,14 +207,14 @@ public class MoveHeinz : MonoBehaviour {
 
 	void launchAttack(){
 		if(isAttacking){
-			/*
+			
 			if(currSpell==null){
 				currSpell = Instantiate(spell,wandTip.transform.position,Quaternion.identity) as GameObject;
 			}else if(!currSpell.GetComponent<Spell>().going){
 				currSpell = Instantiate(spell,wandTip.transform.position,Quaternion.identity) as GameObject;
-			}*/
-			spellLine.SetPosition(0,wandTip.transform.position);
-			spellLine.SetPosition(1,cameraT.position+cameraT.forward*100);
+			}
+			//spellLine.SetPosition(0,wandTip.transform.position);
+			//spellLine.SetPosition(1,cameraT.position+cameraT.forward*100);
 			if(Physics.Raycast(wandTip.transform.position, cameraT.forward, out hit))
  			{
      			GameObject block = hit.collider.gameObject;
@@ -223,7 +223,7 @@ public class MoveHeinz : MonoBehaviour {
 				}
  			}
 		}else{
-			
+	
 		}
 
 	}
