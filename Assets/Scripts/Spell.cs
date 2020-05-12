@@ -10,9 +10,14 @@ public class Spell : MonoBehaviour
     
     
     // Start is called before the first frame update
-    public virtual void Start()
+    void Start()
     {
         player = GameObject.Find("paris").GetComponent<MoveHeinz>();
+        StartStuff();
+    }
+
+    public virtual void StartStuff(){
+
     }
 
     // Update is called once per frame

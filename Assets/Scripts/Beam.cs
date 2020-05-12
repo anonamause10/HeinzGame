@@ -7,8 +7,7 @@ public class Beam : Spell
     public Vector3 rotdamp = Vector3.zero;
     public ParticleSystem beamLine;
 
-    public override void Start(){
-        player = GameObject.Find("paris").GetComponent<MoveHeinz>();
+    public override void StartStuff(){
         beamLine = GetComponent<ParticleSystem>();
     }
 

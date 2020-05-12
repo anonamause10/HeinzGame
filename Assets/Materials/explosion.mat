@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SpellBeam
+  m_Name: explosion
   m_Shader: {fileID: 4800000, guid: 1357fa0cb9244c246ac8a88e00ea6a00, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -47,7 +47,7 @@ Material:
     - Vector1_2ABD1AD4: 13.83
     - Vector1_5BF5CBB: -0.2
     - Vector1_5C5373DC: 0.15
-    - Vector1_F8205F6E: 0.11
+    - Vector1_F8205F6E: -0.76
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -68,7 +68,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Color_572DCDEB: {r: 5.2366357, g: 5.2366357, b: 0, a: 1}
-    - Color_912A50A: {r: 0, g: 0.26344463, b: 2.79544, a: 0}
+    - Color_912A50A: {r: 0, g: 0.11467093, b: 1.216786, a: 0}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}

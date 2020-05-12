@@ -44,7 +44,7 @@ public class MoveHeinz : MonoBehaviour {
 	float armdeg = 0;
 	float armprev = 0;
 	int armTurnFrameCounter;
-	RaycastHit hit;
+	public RaycastHit hit;
 	GameObject spell;
 	public GameObject currSpell;
 	LineRenderer spellLine;
@@ -78,7 +78,7 @@ public class MoveHeinz : MonoBehaviour {
 		
 		launchAttack();
 		
-		print(spell.GetComponent<SpellBeam>().going);
+		print(hit.distance);
 		
 		//Debug.DrawRay(wandTip.transform.position, !flying?(cameraT.forward*100):transform.forward*100);
 	}
@@ -207,14 +207,6 @@ public class MoveHeinz : MonoBehaviour {
 
 	void launchAttack(){
 		if(isAttacking){
-			
-			if(currSpell==null){
-				currSpell = Instantiate(spell,wandTip.transform.position,Quaternion.identity) as GameObject;
-			}else if(!currSpell.GetComponent<Spell>().going){
-				currSpell = Instantiate(spell,wandTip.transform.position,Quaternion.identity) as GameObject;
-			}
-			//spellLine.SetPosition(0,wandTip.transform.position);
-			//spellLine.SetPosition(1,cameraT.position+cameraT.forward*100);
 			if(Physics.Raycast(wandTip.transform.position, cameraT.forward, out hit))
  			{
      			GameObject block = hit.collider.gameObject;
@@ -222,6 +214,13 @@ public class MoveHeinz : MonoBehaviour {
 					Destroy(block);
 				}
  			}
+			if(currSpell==null||!currSpell.GetComponent<Spell>().going){
+				currSpell = Instantiate(spell,wandTip.transform.position,Quaternion.identity) as GameObject;
+			}else{
+
+			}
+			//spellLine.SetPosition(0,wandTip.transform.position);
+			//spellLine.SetPosition(1,cameraT.position+cameraT.forward*100);
 		}else{
 	
 		}
