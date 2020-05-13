@@ -3505,7 +3505,7 @@ ParticleSystem:
     serializedVersion: 3
     type: 1
     collisionMode: 0
-    colliderForce: 82.26
+    colliderForce: 0
     multiplyColliderForceByParticleSize: 0
     multiplyColliderForceByParticleSpeed: 0
     multiplyColliderForceByCollisionAngle: 1
@@ -3683,7 +3683,7 @@ ParticleSystem:
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
@@ -4716,4 +4716,3 @@ MonoBehaviour:
   buff: 0
   rotdamp: {x: 0, y: 0, z: 0}
   beamLine: {fileID: 0}
-  currExplosion: {fileID: 0}

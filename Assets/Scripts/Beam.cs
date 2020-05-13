@@ -6,23 +6,25 @@ public class Beam : Spell
 {
     public Vector3 rotdamp = Vector3.zero;
     public ParticleSystem beamLine;
+    private ParticleCollisionEvent[] CollisionEvents;
     
 
     public override void StartStuff(){
         beamLine = GetComponent<ParticleSystem>();
+        CollisionEvents = new ParticleCollisionEvent[8];
     }
 
     public override void LateUpdate()
     {
         if(player.isAttacking&&going){
-            useEffect();
+            UseEffect();
         }else if(!player.isAttacking){
-            stopEffect();
+            StopEffect();
         }
 
     }
 
-    public override void useEffect(){
+    public override void UseEffect(){
         if(going){
             //print("active");
             transform.position = player.wandTip.transform.position;
@@ -33,9 +35,16 @@ public class Beam : Spell
 		if(!beamLine.isEmitting){
 			beamLine.Play();
 		}
+        if(Physics.Raycast(player.wandTip.transform.position, player.cameraT.forward, out player.hit))
+ 		{
+     		GameObject block = player.hit.collider.gameObject;
+			if(block.tag == "EnemyCube"){
+				//UseEffectEnemy(block);
+			}
+ 		}
     }
 
-    public override void stopEffect(){
+    public override void StopEffect(){
         going = false;
         if(!beamLine.isStopped){
 			beamLine.Stop();
@@ -44,4 +53,16 @@ public class Beam : Spell
             Destroy(gameObject);
         }
     }
+
+    public override void UseEffectEnemy(GameObject enemy){
+        enemy.GetComponent<MoveBlock>().health-=1;
+    }
+
+    public void OnParticleCollision(GameObject other)
+    {
+        if(other.tag == "EnemyCube"){
+			UseEffectEnemy(other);
+		}
+    }   
+ 
 }

@@ -78,7 +78,7 @@ public class MoveHeinz : MonoBehaviour {
 		
 		launchAttack();
 		
-		print(hit.distance);
+		print(transform.position.y);
 		
 		//Debug.DrawRay(wandTip.transform.position, !flying?(cameraT.forward*100):transform.forward*100);
 	}
@@ -207,17 +207,8 @@ public class MoveHeinz : MonoBehaviour {
 
 	void launchAttack(){
 		if(isAttacking){
-			if(Physics.Raycast(wandTip.transform.position, cameraT.forward, out hit))
- 			{
-     			GameObject block = hit.collider.gameObject;
-				if(block.tag == "EnemyCube"){
-					block.GetComponent<MoveBlock>().health-=1;
-				}
- 			}
 			if(currSpell==null||!currSpell.GetComponent<Spell>().going){
 				currSpell = Instantiate(spell,wandTip.transform.position,Quaternion.identity) as GameObject;
-			}else{
-
 			}
 			//spellLine.SetPosition(0,wandTip.transform.position);
 			//spellLine.SetPosition(1,cameraT.position+cameraT.forward*100);

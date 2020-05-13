@@ -6,7 +6,7 @@ public class Spell : MonoBehaviour
 {
     public MoveHeinz player;
     public bool going = true;
-    public bool buff;//spell that boosts player stats or not
+    public bool buff = false;//spell that boosts player stats or not
     
     
     // Start is called before the first frame update
@@ -26,12 +26,16 @@ public class Spell : MonoBehaviour
         
     }
 
-    public virtual void useEffect(){
+    public virtual void UseEffect(){
         
     }
 
-    public virtual void stopEffect(){
+    public virtual void StopEffect(){
 
+    }
+
+    public virtual void UseEffectEnemy(GameObject enemy){
+        
     }
 
 }

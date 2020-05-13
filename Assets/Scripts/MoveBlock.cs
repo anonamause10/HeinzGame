@@ -5,8 +5,8 @@ using UnityEngine;
 public class MoveBlock : MonoBehaviour
 {
     GameObject target;
-    public int totalHealth = 100;
-    public int health = 100;
+    public int totalHealth = 20;
+    public int health;
     Gradient grad;  
     Material currMaterial;
     Renderer rend;
@@ -16,6 +16,8 @@ public class MoveBlock : MonoBehaviour
         currMaterial = new Material(Shader.Find("Lightweight Render Pipeline/Lit"));
         rend.material = currMaterial;
         grad = new Gradient();
+
+        health = totalHealth;
 
         //Color keys
         GradientColorKey[] colorKey = new GradientColorKey[2];
@@ -35,7 +37,7 @@ public class MoveBlock : MonoBehaviour
     }
 
     void Update(){
-        if(health<0){
+        if(health<0||transform.position.y<-10f){
             Destroy(gameObject);
         }
         Vector3 targetVec = target.transform.position-transform.position;

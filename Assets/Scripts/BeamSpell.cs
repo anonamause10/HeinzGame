@@ -22,14 +22,14 @@ public class BeamSpell : Spell
     public override void LateUpdate()
     {
         if(player.isAttacking&&going){
-            useEffect();
+            UseEffect();
         }else{
-            stopEffect();
+            StopEffect();
         }
 
     }
 
-    public override void useEffect(){
+    public override void UseEffect(){
         material.SetFloat("_Density",Mathf.Lerp(1.3f,-0.2f,densityTime/0.5f));
         densityTime+=Time.deltaTime;
 
@@ -47,9 +47,17 @@ public class BeamSpell : Spell
                 currExplosion.transform.forward = player.hit.normal;
             }
         }
+
+        if(Physics.Raycast(player.wandTip.transform.position, player.cameraT.forward, out player.hit))
+ 		{
+     		GameObject block = player.hit.collider.gameObject;
+			if(block.tag == "EnemyCube"){
+				UseEffectEnemy(block);
+			}
+ 		}
     }
 
-    public override void stopEffect(){
+    public override void StopEffect(){
         going = false;
         if(currExplosion!=null){
             currExplosion.GetComponent<Explosion>().kill();
@@ -60,5 +68,9 @@ public class BeamSpell : Spell
         }
         dieTime-=Time.deltaTime;
         
+    }
+
+    public override void UseEffectEnemy(GameObject enemy){
+        enemy.GetComponent<MoveBlock>().health-=1;
     }
 }
