@@ -126,3 +126,7 @@ MonoBehaviour:
   buff: 0
   rotdamp: {x: 0, y: 0, z: 0}
   beamStart: {fileID: 1355545900843080831}
+  material: {fileID: 0}
+  currExplosion: {fileID: 0}
+  densityTime: 0
+  dieTime: 2

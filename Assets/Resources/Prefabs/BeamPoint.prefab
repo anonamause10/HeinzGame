@@ -3675,7 +3675,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     minKillSpeed: 0
-    maxKillSpeed: 10
+    maxKillSpeed: 1000
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
@@ -3884,7 +3884,7 @@ ParticleSystem:
     textureMode: 0
     ribbonCount: 1
     shadowBias: 0.5
-    worldSpace: 0
+    worldSpace: 1
     dieWithParticles: 0
     sizeAffectsWidth: 0
     sizeAffectsLifetime: 0
@@ -4656,7 +4656,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 0}
-  - {fileID: 2100000, guid: e7babf5c1bd5a744d87483b3bf312672, type: 2}
+  - {fileID: 2100000, guid: 53ed209c588f1ef45a98c2aa8bd130ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4711,8 +4711,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fce8f7cd6332d0749a7c7ae717641f56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beamLine: {fileID: 0}
   player: {fileID: 0}
   going: 1
   buff: 0
   rotdamp: {x: 0, y: 0, z: 0}
+  beamLine: {fileID: 0}
+  currExplosion: {fileID: 0}

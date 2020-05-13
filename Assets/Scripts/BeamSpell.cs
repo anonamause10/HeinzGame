@@ -9,10 +9,13 @@ public class BeamSpell : Spell
     public Material material;
     GameObject explosion;
     public GameObject currExplosion;
+    public float densityTime;
+    public float dieTime;
 
     public override void StartStuff(){
         material = GetComponent<Renderer>().material;
         explosion = (GameObject)Resources.Load("Prefabs/Explosion");
+        dieTime = 0.5f;
     }
 
 
@@ -20,15 +23,19 @@ public class BeamSpell : Spell
     {
         if(player.isAttacking&&going){
             useEffect();
-        }else if(!player.isAttacking){
+        }else{
             stopEffect();
         }
 
     }
 
     public override void useEffect(){
+        material.SetFloat("_Density",Mathf.Lerp(1.3f,-0.2f,densityTime/0.5f));
+        densityTime+=Time.deltaTime;
+
         float dist = Mathf.Clamp((player.hit.distance!=0?player.hit.distance:200)/2,0,100);
-        transform.localScale = new Vector3(0.3f*Mathf.Atan(dist/5)+0.3f,dist,0.3f*Mathf.Atan(dist/5)+0.3f);
+        float xzscale = 0.3f*Mathf.Atan(dist/10)+0.1f;
+        transform.localScale = new Vector3(xzscale,dist,xzscale);
         transform.up = (player.cameraT.position+player.cameraT.forward*100)-player.wandTip.transform.position;
         transform.position = (player.wandTip.transform.position+(transform.localScale.y*transform.up));
        
@@ -47,7 +54,11 @@ public class BeamSpell : Spell
         if(currExplosion!=null){
             currExplosion.GetComponent<Explosion>().kill();
         }
-        Destroy(gameObject);
+        material.SetFloat("_Density",Mathf.Lerp(1.3f,material.GetFloat("_Density"),dieTime/0.5f));
+        if(dieTime<0){
+            Destroy(gameObject);
+        }
+        dieTime-=Time.deltaTime;
         
     }
 }
