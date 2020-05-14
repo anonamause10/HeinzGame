@@ -48,6 +48,8 @@ public class MoveHeinz : MonoBehaviour {
 	GameObject spell;
 	public GameObject currSpell;
 	LineRenderer spellLine;
+	private int spellIndex;
+	String[] spells;
 
 	//controller stuff
 	CharacterController controller;
@@ -61,7 +63,8 @@ public class MoveHeinz : MonoBehaviour {
 		forearm = arm.Find("Bone.008");
 		hand = forearm.Find("Bone.009");
 		cameraT = Camera.main.transform;
-		spell = (GameObject)Resources.Load("Prefabs/SpellBeam");
+		spells = new String[]{"SpellBeam","BeamPoint"};
+		spell = (GameObject)Resources.Load("Prefabs/" + spells[spellIndex]);
 		spellLine = wandTip.GetComponent<LineRenderer>();
 		
 		//animator.speed = 0.5f;
@@ -78,7 +81,7 @@ public class MoveHeinz : MonoBehaviour {
 		
 		launchAttack();
 		
-		print(transform.position.y);
+		//print(transform.position.y);
 		
 		//Debug.DrawRay(wandTip.transform.position, !flying?(cameraT.forward*100):transform.forward*100);
 	}
@@ -174,6 +177,10 @@ public class MoveHeinz : MonoBehaviour {
 
 	void attack(){
 		isAttacking = false;
+		if(Input.GetKeyDown(KeyCode.Q)){
+			spellIndex = (spellIndex+1)%spells.Length;
+			spell = (GameObject)Resources.Load("Prefabs/" + spells[spellIndex]);
+		}
 		//attacking
 		bool valid = attackValid();
 		if(Input.GetMouseButton(0)&&valid){

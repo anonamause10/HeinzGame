@@ -5,8 +5,11 @@ using UnityEngine;
 public class MoveBlock : MonoBehaviour
 {
     GameObject target;
+    float initSpeed = 20;
+    public float speed = 20;
+    private float speedDamp = 1;
     public int totalHealth = 20;
-    public int health;
+    public float health;
     Gradient grad;  
     Material currMaterial;
     Renderer rend;
@@ -40,14 +43,14 @@ public class MoveBlock : MonoBehaviour
         if(health<0||transform.position.y<-10f){
             Destroy(gameObject);
         }
+        speed = Mathf.SmoothDamp(speed, initSpeed, ref speedDamp, 15f);
         Vector3 targetVec = target.transform.position-transform.position;
 	    Vector3 move = Vector3.ProjectOnPlane(targetVec,Vector3.up);
-        float moveMag = Mathf.Clamp(0.4f*move.magnitude,0,20);
+        float moveMag = Mathf.Clamp(0.4f*move.magnitude,0,speed);
         if (move.magnitude < 6){
             moveMag = 0;
         }
 	    transform.Translate(moveMag*move.normalized*Time.deltaTime,Space.World);
-		currMaterial.color = grad.Evaluate(((float)health)/totalHealth);
-
+		currMaterial.color = grad.Evaluate(health/totalHealth);
     }
 }

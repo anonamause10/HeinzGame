@@ -57,6 +57,14 @@ public class BeamSpell : Spell
  		}
     }
 
+    public override void UseEffectEnemy(GameObject enemy){
+        MoveBlock blockScript = enemy.GetComponent<MoveBlock>();
+        if(blockScript.speed>0){
+            blockScript.speed-=1;
+            blockScript.health-=0.4f;
+        }
+    }
+
     public override void StopEffect(){
         going = false;
         if(currExplosion!=null){
@@ -68,9 +76,5 @@ public class BeamSpell : Spell
         }
         dieTime-=Time.deltaTime;
         
-    }
-
-    public override void UseEffectEnemy(GameObject enemy){
-        enemy.GetComponent<MoveBlock>().health-=1;
     }
 }

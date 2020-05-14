@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[DefaultExecutionOrder(300)]
 public class Spell : MonoBehaviour
 {
     public MoveHeinz player;
