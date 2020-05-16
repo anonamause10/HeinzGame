@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BeamSpell : Spell
+public class FreezeSpell : Spell
 {
     public Vector3 rotdamp = Vector3.zero;
     public Transform beamStart;

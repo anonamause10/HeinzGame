@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 7052891868966973157}
   - component: {fileID: 7052891868966973156}
   m_Layer: 0
-  m_Name: BeamPoint
-  m_TagString: Untagged
+  m_Name: DeathSpell
+  m_TagString: Spell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4714,5 +4714,4 @@ MonoBehaviour:
   player: {fileID: 0}
   going: 1
   buff: 0
-  rotdamp: {x: 0, y: 0, z: 0}
   beamLine: {fileID: 0}

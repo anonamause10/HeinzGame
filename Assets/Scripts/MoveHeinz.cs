@@ -63,7 +63,7 @@ public class MoveHeinz : MonoBehaviour {
 		forearm = arm.Find("Bone.008");
 		hand = forearm.Find("Bone.009");
 		cameraT = Camera.main.transform;
-		spells = new String[]{"SpellBeam","BeamPoint"};
+		spells = new String[]{"FreezeSpell","DeathSpell","FireBoltSpell"};
 		spell = (GameObject)Resources.Load("Prefabs/" + spells[spellIndex]);
 		spellLine = wandTip.GetComponent<LineRenderer>();
 		

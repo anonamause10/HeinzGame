@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Beam : Spell
+public class DeathSpell : Spell
 {
-    public Vector3 rotdamp = Vector3.zero;
     public ParticleSystem beamLine;
     private ParticleCollisionEvent[] CollisionEvents;
     
@@ -25,13 +24,10 @@ public class Beam : Spell
     }
 
     public override void UseEffect(){
-        if(going){
-            //print("active");
-            transform.position = player.wandTip.transform.position;
-            transform.forward = player.cameraT.forward*100;//Vector3.SmoothDamp(transform.forward, player.cameraT.forward,ref rotdamp, 0.2f);
-        }else{
-            //print("no");
-        }
+
+        transform.position = player.wandTip.transform.position;
+        transform.forward = player.cameraT.forward*100;//Vector3.SmoothDamp(transform.forward, player.cameraT.forward,ref rotdamp, 0.2f);
+        
 		if(!beamLine.isEmitting){
 			beamLine.Play();
 		}
