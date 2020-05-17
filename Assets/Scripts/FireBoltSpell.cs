@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class FireBoltSpell : Spell
 {
-    public float velocity=10;
+    public float velocity=50;
     public float timer = 5f;
+    public bool attackingDone;
 
     public override void StartStuff(){
         transform.up = (player.cameraT.position+player.cameraT.forward*100)-player.wandTip.transform.position;
-        player.currSpell = null;
     }
 
     public override void LateUpdate()
     {
         UseEffect();
+        if(!player.isAttacking){
+            player.currSpell = null;
+        }
 
     }
 
@@ -32,7 +35,7 @@ public class FireBoltSpell : Spell
     }
 
     public override void UseEffectEnemy(GameObject enemy){
-        enemy.GetComponent<MoveBlock>().health-=1;
+        enemy.GetComponent<MoveBlock>().health-=10;
     }
 
     void OnTriggerEnter(Collider other){
@@ -43,6 +46,11 @@ public class FireBoltSpell : Spell
             UseEffectEnemy(other.gameObject);
         }
         StopEffect();
+    }
+
+    public override bool NewAttackValid(MoveHeinz other){
+        attackingDone = !other.attackingPrev;
+        return attackingDone;
     }
  
 }

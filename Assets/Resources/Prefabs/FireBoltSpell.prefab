@@ -109,7 +109,7 @@ MonoBehaviour:
   player: {fileID: 0}
   going: 1
   buff: 0
-  velocity: 10
+  velocity: 50
   timer: 5
 --- !u!54 &557390349813460583
 Rigidbody:

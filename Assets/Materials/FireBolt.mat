@@ -9,8 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: FireBolt
   m_Shader: {fileID: 4800000, guid: 04d60273fd311e84bae600f5f978c39b, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
+  m_ShaderKeywords: 0
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -72,8 +72,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1.9766747, g: 0.67013705, b: 0, a: 1}
-    - _EdgeColor: {r: 2.828427, g: 1.5084945, b: 0, a: 0}
+    - _Color: {r: 2.1185474, g: 0.72097164, b: 0, a: 1}
+    - _EdgeColor: {r: 2.8284268, g: 0.1756308, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _MainColor: {r: 0.98833734, g: 0.6623413, b: 0, a: 0}
+    - _MainColor: {r: 1.2166604, g: 0.81593496, b: 0, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}

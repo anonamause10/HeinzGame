@@ -14,12 +14,13 @@ public class MoveHeinz : MonoBehaviour {
 	float turnSmoothVelocityY;
 	bool walking = false;
 
-	float moveMode;
 	//move and jump stuff
 	public float speedSmoothTime = 0.1f;
 	public float force = 40f;
 	public float currentSpeed;
 	float speedSmoothVelocity = 1f;
+	float moveMode;
+	float moveModeVelocity = 1f;
     Vector3 moveVec;
 	Vector2 inputDir;
 	Vector2 inputSmoothDamp;
@@ -32,6 +33,7 @@ public class MoveHeinz : MonoBehaviour {
 
 	//attack stuff
 	public bool isAttacking = false;
+	public bool attackingPrev;
 	float attackFrameCounter;
 	Transform arm;
 	Transform forearm;
@@ -71,6 +73,7 @@ public class MoveHeinz : MonoBehaviour {
 	}
 
 	void LateUpdate () {
+		attackingPrev = isAttacking;
 		if(flying){
 			fly();
 		}else{
@@ -88,7 +91,6 @@ public class MoveHeinz : MonoBehaviour {
 
 	void move(){
 		//walking
-		moveMode = 0f;
 		jumpmode = 0;
 		Vector2 input = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
 		inputDir = Vector2.SmoothDamp(inputDir, input.normalized, ref inputSmoothDamp, !controller.isGrounded?turnSmoothTime:turnSmoothTime*1f*((currentSpeed<5?5:currentSpeed)/runSpeed));
@@ -98,12 +100,9 @@ public class MoveHeinz : MonoBehaviour {
 				targetRotation = transform.eulerAngles.y;
 			}
 			transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVelocity, controller.isGrounded?turnSmoothTime:turnSmoothTime*1f*((currentSpeed<5?5:currentSpeed)/runSpeed));
-			moveMode = 1f;
 		}
 		walking = Input.GetKey (KeyCode.LeftShift);
-		if(walking){
-			moveMode/=2;
-		}
+
 
 		float targetSpeed = ((walking) ? walkSpeed : runSpeed) * inputDir.magnitude;
 		currentSpeed = Mathf.SmoothDamp (currentSpeed, targetSpeed, ref speedSmoothVelocity, controller.isGrounded?speedSmoothTime:5f);
@@ -113,6 +112,8 @@ public class MoveHeinz : MonoBehaviour {
         moveVec.y-=gravity*Time.deltaTime;
 		controller.Move(moveVec* Time.deltaTime);
 		float animationSpeedPercent = ((!walking) ? currentSpeed / runSpeed : currentSpeed / walkSpeed * .5f);
+		float targetMoveMode = attackMode?1.5f:animationSpeedPercent;
+		moveMode = Mathf.SmoothDamp(moveMode,targetMoveMode,moveModeVelocity,0.1f);
 		animator.SetFloat ("movespeed", attackMode?1.5f:animationSpeedPercent);
 		animator.SetFloat ("moveX", inputDir.x*animationSpeedPercent);
 		animator.SetFloat ("moveY", inputDir.y*animationSpeedPercent);
@@ -158,7 +159,6 @@ public class MoveHeinz : MonoBehaviour {
 
 		if (currentSpeed > 5 || Input.GetMouseButton(0)) {
 			transform.forward = Vector3.SmoothDamp(transform.forward, Quaternion.AngleAxis(-25f*currentSpeed/flySpeed, transform.right)*cameraT.forward, ref moveVec, 0.03f);
-			moveMode = 1f;
 		}
 
 		float targetSpeed = ((Input.GetAxisRaw("Vertical")+1)/2f)*flySpeed;
@@ -214,7 +214,7 @@ public class MoveHeinz : MonoBehaviour {
 
 	void launchAttack(){
 		if(isAttacking){
-			if(currSpell==null||!currSpell.GetComponent<Spell>().going){
+			if(spell.GetComponent<Spell>().NewAttackValid(this)){
 				currSpell = Instantiate(spell,wandTip.transform.position,Quaternion.identity) as GameObject;
 			}
 			//spellLine.SetPosition(0,wandTip.transform.position);
