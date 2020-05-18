@@ -35,7 +35,7 @@ public class FireBoltSpell : Spell
     }
 
     public override void UseEffectEnemy(GameObject enemy){
-        enemy.GetComponent<MoveBlock>().health-=10;
+        enemy.GetComponent<MoveBlock>().health-=21;
     }
 
     void OnTriggerEnter(Collider other){
@@ -44,13 +44,17 @@ public class FireBoltSpell : Spell
         }
         if(other.gameObject.tag == "EnemyCube"){
             UseEffectEnemy(other.gameObject);
-        }
+        } 
         StopEffect();
     }
 
-    public override bool NewAttackValid(MoveHeinz other){
+    public override bool NewEffectValid(MoveHeinz other){
         attackingDone = !other.attackingPrev;
         return attackingDone;
+    }
+
+    public override bool EffectValid(MoveHeinz other){
+        return other.MouseDown();
     }
  
 }

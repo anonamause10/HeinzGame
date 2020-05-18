@@ -39,8 +39,11 @@ public class Spell : MonoBehaviour
         
     }
 
-    public virtual bool NewAttackValid(MoveHeinz other){
+    public virtual bool NewEffectValid(MoveHeinz other){
         return other.currSpell == null||!other.currSpell.GetComponent<Spell>().going;
     }
 
+    public virtual bool EffectValid(MoveHeinz other){
+        return true;
+    }
 }
