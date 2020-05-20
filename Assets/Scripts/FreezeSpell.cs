@@ -36,7 +36,7 @@ public class FreezeSpell : Spell
         float dist = Mathf.Clamp((player.hit.distance!=0?player.hit.distance:200)/2,0,100);
         float xzscale = 0.3f*Mathf.Atan(dist/10)+0.1f;
         transform.localScale = new Vector3(xzscale,dist,xzscale);
-        transform.up = (player.cameraT.position+player.cameraT.forward*100)-player.wandTip.transform.position;
+        transform.up = (player.hit.distance!=0?player.hit.point:player.cameraT.position+player.cameraT.forward*100)-player.wandTip.transform.position;
         transform.position = (player.wandTip.transform.position+(transform.localScale.y*transform.up));
        
         if(player.hit.distance!=0&&player.hit.distance<100){
@@ -45,6 +45,10 @@ public class FreezeSpell : Spell
             }else{
                 currExplosion.transform.position = player.hit.point;
                 currExplosion.transform.forward = player.hit.normal;
+            }
+        }else{
+            if(currExplosion!=null){
+                currExplosion.GetComponent<Explosion>().kill();
             }
         }
 

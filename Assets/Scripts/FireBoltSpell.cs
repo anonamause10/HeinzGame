@@ -9,7 +9,7 @@ public class FireBoltSpell : Spell
     public bool attackingDone;
 
     public override void StartStuff(){
-        transform.up = (player.cameraT.position+player.cameraT.forward*100)-player.wandTip.transform.position;
+        transform.up = (player.hit.distance!=0?player.hit.point:player.cameraT.position+player.cameraT.forward*100)-player.wandTip.transform.position;
     }
 
     public override void LateUpdate()

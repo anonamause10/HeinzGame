@@ -47,7 +47,6 @@ public class MoveHeinz : MonoBehaviour {
 	float armprev = 0;
 	int armTurnFrameCounter;
 	public RaycastHit hit;
-	public RaycastHit lookHit;
 	public Transform crosshair;
 	GameObject spell;
 	public GameObject currSpell;
@@ -85,9 +84,8 @@ public class MoveHeinz : MonoBehaviour {
 		attack();
 		
 		launchAttack();
-		Physics.Raycast(Camera.main.ScreenToWorldPoint(crosshair.position), cameraT.forward, out lookHit);
-		Physics.Raycast(wandTip.transform.position, lookHit.distance!=0?(lookHit.point-wandTip.transform.position):cameraT.position+cameraT.forward*100, out hit);
-		print(lookHit.point);
+		Physics.Raycast(cameraT.position, cameraT.forward, out hit);
+		print(hit.distance);
 		
 		//Debug.DrawRay(wandTip.transform.position, (lookHit.distance!=0?(lookHit.point-wandTip.transform.position):cameraT.position+cameraT.forward*100)*100,Color.red);
 	}

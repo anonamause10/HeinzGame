@@ -26,7 +26,7 @@ public class DeathSpell : Spell
     public override void UseEffect(){
 
         transform.position = player.wandTip.transform.position;
-        transform.forward = player.cameraT.forward*100;//Vector3.SmoothDamp(transform.forward, player.cameraT.forward,ref rotdamp, 0.2f);
+        transform.forward = (player.hit.distance!=0?player.hit.point:player.cameraT.position+player.cameraT.forward*100)-player.wandTip.transform.position;
         
 		if(!beamLine.isEmitting){
 			beamLine.Play();
