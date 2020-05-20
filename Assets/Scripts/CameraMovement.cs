@@ -14,6 +14,7 @@ public class CameraMovement : MonoBehaviour {
 	Vector3 attackModeOffset = Vector3.zero;
 	Vector3 targetAttackModeOffset = Vector3.zero;
 	
+	
 	public float minTurnAngle = -90.0f;
 	public float maxTurnAngle = 0.0f;
 	private float rotX;
@@ -27,7 +28,7 @@ public class CameraMovement : MonoBehaviour {
 		targetDistanceInitial = targetDistance;
 		GameObject thePlayer = GameObject.Find("paris");
         playerScript = thePlayer.GetComponent<MoveHeinz>();
-		playerScript.OnAttackModeSwitch += switchAttackMode;
+		//playerScript.OnAttackModeSwitch += switchAttackMode;
 	}
 	
 	void LateUpdate ()
@@ -37,6 +38,7 @@ public class CameraMovement : MonoBehaviour {
 		}else{
 			runCam();
 		}
+
 	}
 
 	void runCam(){

@@ -16,8 +16,8 @@ GameObject:
   - component: {fileID: 2738294155470576027}
   - component: {fileID: 414551844884256058}
   - component: {fileID: 457326970274124925}
-  - component: {fileID: 6411189256865565877}
-  m_Layer: 0
+  - component: {fileID: 114519588518286566}
+  m_Layer: 9
   m_Name: FireBoltSpell
   m_TagString: Spell
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ MonoBehaviour:
   player: {fileID: 0}
   going: 1
   buff: 0
-  velocity: 50
+  velocity: 80
   timer: 5
   attackingDone: 1
 --- !u!54 &2738294155470576027
@@ -204,7 +204,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -759,7 +759,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 25
+    angle: 2.07
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -2671,8 +2671,8 @@ ParticleSystem:
     strength:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1
-      minScalar: 0.2
+      scalar: 4
+      minScalar: 20
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -3982,7 +3982,7 @@ ParticleSystem:
     textureMode: 0
     ribbonCount: 1
     shadowBias: 0.5
-    worldSpace: 1
+    worldSpace: 0
     dieWithParticles: 1
     sizeAffectsWidth: 1
     sizeAffectsLifetime: 0
@@ -4797,7 +4797,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &6411189256865565877
+--- !u!114 &114519588518286566
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4806,11 +4806,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2738294155470576024}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: 491975ff9c34ebe45bfb564a24b8258e, type: 2}
   isGlobal: 0
-  priority: 0
-  blendDistance: 0
+  blendDistance: 40
   weight: 1
-  sharedProfile: {fileID: 0}
+  priority: 0

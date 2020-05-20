@@ -41,14 +41,14 @@ public class FreezeSpell : Spell
        
         if(player.hit.distance!=0&&player.hit.distance<100){
             if(currExplosion==null){
-                currExplosion = Instantiate(explosion,player.hit.point,Quaternion.identity) as GameObject;
+                currExplosion = Instantiate(explosion,player.hit.point,Quaternion.LookRotation(player.hit.normal,Vector3.up)) as GameObject;
             }else{
                 currExplosion.transform.position = player.hit.point;
                 currExplosion.transform.forward = player.hit.normal;
             }
         }
 
-        if(Physics.Raycast(player.wandTip.transform.position, player.cameraT.forward, out player.hit))
+        if(player.hit.collider!=null)
  		{
      		GameObject block = player.hit.collider.gameObject;
 			if(block.tag == "EnemyCube"){
