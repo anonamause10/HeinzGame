@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: FireBolt
-  m_Shader: {fileID: 4800000, guid: e6d047ef9d9c89749b15a52b348f5d0d, type: 3}
+  m_Shader: {fileID: 4800000, guid: ec637d8401a5b694fb5ae05d1a262fb9, type: 3}
   m_ShaderKeywords: 0
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0

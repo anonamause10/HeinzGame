@@ -4,23 +4,23 @@ using System.Collections;
 
 public class MoveHeinz : MonoBehaviour {
 	//public vars
-	public float walkSpeed = 15;
-	public float runSpeed = 30;
-	public int gravity = 20;
+	private float walkSpeed = 15;
+	private float runSpeed = 30;
+	private int gravity = 20;
 	public float flySpeed = 100;
 	//some move stuff
-	public float turnSmoothTime = 0.2f;
+	private float turnSmoothTime = 0.2f;
 	float turnSmoothVelocity;
 	float turnSmoothVelocityY;
 	bool walking = false;
 
 	//move and jump stuff
-	public float speedSmoothTime = 0.1f;
-	public float force = 40f;
+	private float speedSmoothTime = 0.1f;
+	private float force = 40f;
 	public float currentSpeed;
-	float speedSmoothVelocity = 1f;
-	float moveMode;
-	float moveModeVelocity = 1f;
+	private float speedSmoothVelocity = 1f;
+	private float moveMode;
+	private float moveModeVelocity = 1f;
     Vector3 moveVec;
 	Vector2 inputDir;
 	Vector2 inputSmoothDamp;
@@ -28,13 +28,13 @@ public class MoveHeinz : MonoBehaviour {
 	float jumpTime=1;
 	bool isJumping;
 	public bool flying = false;
-	public bool outFly = false;
+	private bool outFly = false;
 	int jumpmode;
 
 	//attack stuff
 	public bool isAttacking = false;
 	public bool attackingPrev;
-	public float attackFrameCounter;
+	private float attackFrameCounter;
 	Transform arm;
 	Transform forearm;
 	Transform hand;
@@ -85,7 +85,7 @@ public class MoveHeinz : MonoBehaviour {
 		
 		launchAttack();
 		Physics.Raycast(cameraT.position, cameraT.forward, out hit);
-		print(hit.distance);
+		//print(hit.distance);
 		
 		//Debug.DrawRay(wandTip.transform.position, (lookHit.distance!=0?(lookHit.point-wandTip.transform.position):cameraT.position+cameraT.forward*100)*100,Color.red);
 	}

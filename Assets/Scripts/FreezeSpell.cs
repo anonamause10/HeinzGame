@@ -8,7 +8,7 @@ public class FreezeSpell : Spell
     public Transform beamStart;
     public Material material;
     GameObject explosion;
-    public GameObject currExplosion;
+    private GameObject currExplosion;
     public float densityTime;
     public float dieTime;
 
