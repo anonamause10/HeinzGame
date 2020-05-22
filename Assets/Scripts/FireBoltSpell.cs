@@ -39,7 +39,7 @@ public class FireBoltSpell : Spell
     }
 
     public override void UseEffectEnemy(GameObject enemy){
-        enemy.GetComponent<MoveBlock>().health-=21;
+        enemy.GetComponent<MoveBlock>().health-=11;
     }
 
     void OnTriggerEnter(Collider other){
@@ -49,6 +49,14 @@ public class FireBoltSpell : Spell
         }
         if(other.gameObject.tag == "EnemyCube"){
             UseEffectEnemy(other.gameObject);
+        }
+        Collider[] objectsHit = Physics.OverlapSphere(transform.position, 10, ~(1<<10));
+        foreach (Collider item in objectsHit)
+        {
+            if(item.gameObject.tag == "EnemyCube"){
+                item.gameObject.GetComponent<MoveBlock>().health-=5;
+                item.gameObject.GetComponent<Rigidbody>().AddExplosionForce(1000,transform.position,10,0f);
+            }
         }
         StopEffect();
     }
