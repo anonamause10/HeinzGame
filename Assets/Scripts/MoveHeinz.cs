@@ -66,7 +66,7 @@ public class MoveHeinz : MonoBehaviour {
 		forearm = arm.Find("Bone.008");
 		hand = forearm.Find("Bone.009");
 		cameraT = Camera.main.transform;
-		spells = new String[]{"FreezeSpell","DeathSpell","FireBoltSpell"};
+		spells = new String[]{"FreezeSpell","DeathSpell","FireBoltSpell","BaseBoltSpell"};
 		spell = (GameObject)Resources.Load("Prefabs/" + spells[spellIndex]);
 		spellLine = wandTip.GetComponent<LineRenderer>();
 		crosshair = GameObject.Find("Canvas").transform.Find("Crosshair");
@@ -84,7 +84,7 @@ public class MoveHeinz : MonoBehaviour {
 		attack();
 		
 		launchAttack();
-		Physics.Raycast(cameraT.position, cameraT.forward, out hit);
+		Physics.Raycast(cameraT.position, cameraT.forward, out hit, Mathf.Infinity, ~(1<<10));
 		//print(hit.distance);
 		
 		//Debug.DrawRay(wandTip.transform.position, (lookHit.distance!=0?(lookHit.point-wandTip.transform.position):cameraT.position+cameraT.forward*100)*100,Color.red);

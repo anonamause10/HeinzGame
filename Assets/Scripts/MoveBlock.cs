@@ -8,6 +8,8 @@ public class MoveBlock : MonoBehaviour
     float initSpeed = 20;
     public float speed = 20;
     private float speedDamp = 1;
+    private float colorVal = 1;
+    private float colorDampVel = 0;
     public int totalHealth = 20;
     public float health;
     Gradient grad;  
@@ -26,7 +28,7 @@ public class MoveBlock : MonoBehaviour
         GradientColorKey[] colorKey = new GradientColorKey[2];
         colorKey[0].color = Color.red;
         colorKey[0].time = 0.0f;
-        colorKey[1].color = new Color(0.18f,0.93f,1,1);
+        colorKey[1].color = Color.green;
         colorKey[1].time = 1.0f;
 
         // Populate the alpha  keys at relative time 0 and 1  (0 and 100%)
@@ -51,6 +53,7 @@ public class MoveBlock : MonoBehaviour
             moveMag = 0;
         }
 	    transform.Translate(moveMag*move.normalized*Time.deltaTime,Space.World);
-		currMaterial.color = grad.Evaluate(health/totalHealth);
+        colorVal = Mathf.SmoothDamp(colorVal, health/totalHealth, ref colorDampVel, 0.1f);
+		currMaterial.color = grad.Evaluate(colorVal);
     }
 }
