@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class FreezeSpell : Spell
 {
-    public Vector3 rotdamp = Vector3.zero;
-    public Transform beamStart;
     public Material material;
     GameObject explosion;
     private GameObject currExplosion;
-    public float densityTime;
-    public float dieTime;
+    private float densityTime;
+    private float dieTime;
+    private float speedDamage;
 
     public override void StartStuff(){
+        speedDamage = 1;
+        damage = 0.4f;
         material = GetComponent<Renderer>().material;
         explosion = (GameObject)Resources.Load("Prefabs/Explosion");
         dieTime = 0.5f;
@@ -64,8 +65,8 @@ public class FreezeSpell : Spell
     public override void UseEffectEnemy(GameObject enemy){
         MoveBlock blockScript = enemy.GetComponent<MoveBlock>();
         if(blockScript.speed>0){
-            blockScript.speed-=1;
-            blockScript.health-=0.4f;
+            blockScript.speed-=speedDamage;
+            blockScript.health-=damage;
         }
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Boom : MonoBehaviour
 {
-    protected float aliveTime = 0.05f;
+    protected float aliveTime = 0.2f;
     protected bool dying = true;
     // Start is called before the first frame update
     void Start()

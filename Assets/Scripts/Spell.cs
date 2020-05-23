@@ -8,6 +8,7 @@ public class Spell : MonoBehaviour
     public MoveHeinz player;
     public bool going = true;
     public bool buff = false;//spell that boosts player stats or not
+    public float damage = 0;
     
     
     // Start is called before the first frame update

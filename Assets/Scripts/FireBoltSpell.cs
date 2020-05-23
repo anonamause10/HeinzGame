@@ -4,64 +4,50 @@ using UnityEngine;
 
 public class FireBoltSpell : Spell
 {
-    public float velocity=50;
-    public float timer = 5f;
-    private GameObject release;
-    private GameObject explosion;
+    private float timer = 0;
+    private float radius = 0.1f;
+    private float endTime = 3f;
+    private float finalTime = 10f;
+    private GameObject bolt;
+    private Renderer rend;
     public bool attackingDone;
 
     public override void StartStuff(){
+        timer = 0;
         //Physics.IgnoreCollision(player.gameObject.GetComponent<Collider>(), GetComponent<Collider>(), bool ignore = true);
-        transform.up = (player.hit.distance!=0?player.hit.point:player.cameraT.position+player.cameraT.forward*100)-player.wandTip.transform.position;
-        release = (GameObject)Resources.Load("Prefabs/FireBoltRelease");
-        explosion = (GameObject)Resources.Load("Prefabs/FireBoltExplosion");
-        Instantiate(release, player.wandTip.transform.position, Quaternion.LookRotation(transform.up));
+        transform.localScale = Vector3.zero;
+        bolt = (GameObject)Resources.Load("Prefabs/FireBoltSpell");
+        rend = GetComponent<Renderer>();
     }
 
     public override void LateUpdate()
     {
         UseEffect();
         if(!player.isAttacking){
-            player.currSpell = null;
+            StopEffect();
         }
 
     }
 
     public override void UseEffect(){
-
-        transform.Translate(velocity*Time.deltaTime*transform.up,Space.World);  
-        timer -= Time.deltaTime;
-        if(timer<0){
+        transform.position = player.wandTip.transform.position;
+        transform.localScale = radius*Mathf.Clamp(timer/endTime,0,1)*Vector3.one;
+        rend.material.SetFloat("_Amount", Mathf.Clamp(timer/endTime,0,1));
+        if(timer>finalTime){
             StopEffect();
-        }  
+        }
+        timer += Time.deltaTime;
+
     }
 
     public override void StopEffect(){
+        GameObject firedBolt = Instantiate(bolt, player.wandTip.transform.position,Quaternion.identity);
+        firedBolt.GetComponent<Spell>().damage = Mathf.Clamp(timer/endTime,0.2f,1)*20;
         Destroy(gameObject);
     }
 
-    public override void UseEffectEnemy(GameObject enemy){
-        enemy.GetComponent<MoveBlock>().health-=11;
-    }
-
-    void OnTriggerEnter(Collider other){
-        if(other.gameObject.tag == "Player"||other.gameObject.tag == "Spell"){
-            return;
-        }
-        Instantiate(explosion, other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position), Quaternion.LookRotation(Vector3.up)); 
-        if(other.gameObject.tag == "EnemyCube"){
-            UseEffectEnemy(other.gameObject);
-        }
-        StopEffect();
-    }
-
-    public override bool NewEffectValid(MoveHeinz other){
-        attackingDone = !other.attackingPrev;
-        return attackingDone;
-    }
-
     public override bool EffectValid(MoveHeinz other){
-        return other.MouseDown();
+        return Input.GetMouseButton(0)&&timer<finalTime;
     }
  
 }

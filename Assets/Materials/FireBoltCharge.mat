@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SpellBeam
-  m_Shader: {fileID: 4800000, guid: 1357fa0cb9244c246ac8a88e00ea6a00, type: 3}
+  m_Name: FireBoltCharge
+  m_Shader: {fileID: 4800000, guid: d5f983372b9904e49b76c44a70887fde, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -44,37 +44,28 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_2ABD1AD4: 13.83
-    - Vector1_5BF5CBB: -0.2
-    - Vector1_5C5373DC: 0.15
-    - Vector1_F8205F6E: 1.3
     - _AlphaClip: 0
+    - _Amount: 1
     - _Blend: 0
     - _BumpScale: 1
     - _Cull: 2
     - _Cutoff: 0.5
-    - _Density: 1.31
+    - _Displacement: 1
     - _DstBlend: 0
-    - _EdgeWidth: 0.11
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
-    - _NoiseScale: 6.56
     - _OcclusionStrength: 1
     - _ReceiveShadows: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
-    - _Velocity: -0.3
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_572DCDEB: {r: 5.2366357, g: 5.2366357, b: 0, a: 1}
-    - Color_912A50A: {r: 0, g: 0.26344463, b: 2.79544, a: 0}
-    - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-    - _EdgeColor: {r: 0, g: 6.4222345, b: 5.581628, a: 1}
+    - _Color: {r: 6.8831816, g: 1.3333912, b: 0, a: 1}
+    - _EdgeColor: {r: 2, g: 0, b: 0.09482288, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _MainColor: {r: 0, g: 0.21745528, b: 9.734288, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}

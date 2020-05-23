@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1355545900843080831}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BeamStart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,8 @@ GameObject:
   - component: {fileID: 1355545902133101401}
   - component: {fileID: 1355545902133101400}
   - component: {fileID: 1355545902133101403}
-  m_Layer: 0
+  - component: {fileID: 114915987143058354}
+  m_Layer: 9
   m_Name: FreezeSpell
   m_TagString: Spell
   m_Icon: {fileID: 0}
@@ -127,6 +128,22 @@ MonoBehaviour:
   rotdamp: {x: 0, y: 0, z: 0}
   beamStart: {fileID: 1355545900843080831}
   material: {fileID: 0}
-  currExplosion: {fileID: 0}
   densityTime: 0
   dieTime: 2
+--- !u!114 &114915987143058354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355545902133101383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: 5cf87b590df94ab44b27951926d30ebd, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 0

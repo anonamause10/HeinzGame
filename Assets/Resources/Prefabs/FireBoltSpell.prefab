@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 2738294155470576007}
   - component: {fileID: 2738294155470576004}
   - component: {fileID: 2738294155470576005}
-  - component: {fileID: 2738294155470576026}
   - component: {fileID: 2738294155470576027}
   - component: {fileID: 414551844884256058}
   - component: {fileID: 457326970274124925}
   - component: {fileID: 114519588518286566}
+  - component: {fileID: 114517680093982870}
   m_Layer: 9
   m_Name: FireBoltSpell
   m_TagString: Spell
@@ -31,13 +31,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2738294155470576024}
-  m_LocalRotation: {x: 0.6531161, y: -0.27099702, z: 0.27099702, w: 0.6531161}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 131.666, y: 74.74226, z: 143.163}
   m_LocalScale: {x: 0.15, y: 0.75, z: 0.15}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 45.07}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &2738294155470576007
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -97,24 +97,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2738294155470576026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2738294155470576024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b697f1c49c740c0498826407b39e6059, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  going: 1
-  buff: 0
-  velocity: 80
-  timer: 5
-  attackingDone: 1
 --- !u!54 &2738294155470576027
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4814,3 +4796,21 @@ MonoBehaviour:
   blendDistance: 40
   weight: 1
   priority: 0
+--- !u!114 &114517680093982870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2738294155470576024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 427c2c89dca782e48bd4466177e8191d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  going: 1
+  buff: 0
+  velocity: 50
+  timer: 5
+  attackingDone: 0

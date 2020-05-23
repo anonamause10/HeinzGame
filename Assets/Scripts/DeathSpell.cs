@@ -9,6 +9,7 @@ public class DeathSpell : Spell
     
 
     public override void StartStuff(){
+        damage = 1f;
         beamLine = GetComponent<ParticleSystem>();
         CollisionEvents = new ParticleCollisionEvent[8];
     }
@@ -51,7 +52,7 @@ public class DeathSpell : Spell
     }
 
     public override void UseEffectEnemy(GameObject enemy){
-        enemy.GetComponent<MoveBlock>().health-=1;
+        enemy.GetComponent<MoveBlock>().health-=damage;
     }
 
     public void OnParticleCollision(GameObject other)
