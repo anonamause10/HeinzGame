@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FireBoltBoom : Boom
 {   
-    private float totalTime = 2f;
+    private float totalTime = 0.8f;
     public float radius = 20;
     // Start is called before the first frame update
     public override void StartStuff(){
@@ -35,7 +35,7 @@ public class FireBoltBoom : Boom
         if(other.gameObject.tag == "EnemyCube"){
             Vector3 force = (other.gameObject.transform.position-transform.position).normalized*radius*200;
             other.gameObject.GetComponent<Rigidbody>().AddForce(force);
-            other.gameObject.GetComponent<MoveBlock>().health-=1;
+            other.gameObject.GetComponent<MoveBlock>().health-=radius;
         }
     }
 

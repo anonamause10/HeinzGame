@@ -11,8 +11,12 @@ public class MoveBlock : MonoBehaviour
     private float colorVal = 1;
     private float colorDampVel = 0;
     public int totalHealth = 20;
+    private float dps = 0;
+    private float dpsTime = 0;
+    private bool poisoned = false;
     public float health;
-    Gradient grad;  
+    Color fullHealthColor = Color.green;
+    Color emptyHealthColor = Color.red;  
     Material currMaterial;
     Renderer rend;
     void Start(){
@@ -20,28 +24,19 @@ public class MoveBlock : MonoBehaviour
         rend = GetComponent<Renderer>();
         currMaterial = new Material(Shader.Find("Lightweight Render Pipeline/Lit"));
         rend.material = currMaterial;
-        grad = new Gradient();
 
         health = totalHealth;
-
-        //Color keys
-        GradientColorKey[] colorKey = new GradientColorKey[2];
-        colorKey[0].color = Color.red;
-        colorKey[0].time = 0.0f;
-        colorKey[1].color = Color.green;
-        colorKey[1].time = 1.0f;
-
-        // Populate the alpha  keys at relative time 0 and 1  (0 and 100%)
-        GradientAlphaKey[] alphaKey = new GradientAlphaKey[2];
-        alphaKey[0].alpha = 1.0f;
-        alphaKey[0].time = 0.0f;
-        alphaKey[1].alpha = 1.0f;
-        alphaKey[1].time = 1.0f;
-
-        grad.SetKeys(colorKey, alphaKey);
     }
 
     void Update(){
+        if(poisoned){
+            if(dpsTime>0){
+                health-=dps;
+                dpsTime-=Time.deltaTime;
+            }else{
+                poisoned = false;
+            }
+        }
         if(health<0||transform.position.y<-10f){
             Destroy(gameObject);
         }
@@ -54,6 +49,14 @@ public class MoveBlock : MonoBehaviour
         }
 	    transform.Translate(moveMag*move.normalized*Time.deltaTime,Space.World);
         colorVal = Mathf.SmoothDamp(colorVal, health/totalHealth, ref colorDampVel, 0.1f);
-		currMaterial.color = grad.Evaluate(colorVal);
+		currMaterial.color = Color.Lerp(emptyHealthColor,fullHealthColor,colorVal);
     }
+
+    public void poison(float amount,float time){
+        dps = 0.04f*Mathf.Atan(200*(amount+dps));
+        dpsTime = 2.5f*Mathf.Atan(2000*(dpsTime+time));
+        poisoned = true;
+    }
+
+
 }

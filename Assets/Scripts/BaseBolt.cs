@@ -19,7 +19,7 @@ public class BaseBolt : Spell
         transform.forward = Quaternion.AngleAxis(randX, transform.right) * transform.forward;
         transform.forward = Quaternion.AngleAxis(randY, transform.up) * transform.forward;
         
-        damage = 3;
+        damage = 2f;
 
         explosion = (GameObject)Resources.Load("Prefabs/BaseBoltRelease");
         Instantiate(explosion, player.wandTip.transform.position, Quaternion.LookRotation(transform.forward));

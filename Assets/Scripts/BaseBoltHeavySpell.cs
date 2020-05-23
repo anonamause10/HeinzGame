@@ -11,6 +11,7 @@ public class BaseBoltHeavySpell : Spell
     public bool attackingDone;
 
     public override void StartStuff(){
+        damage = 6;
         //Physics.IgnoreCollision(player.gameObject.GetComponent<Collider>(), GetComponent<Collider>(), bool ignore = true);
         transform.up = (player.hit.distance!=0?player.hit.point:player.cameraT.position+player.cameraT.forward*100)-player.wandTip.transform.position;
         release = (GameObject)Resources.Load("Prefabs/BaseBoltRelease");
@@ -41,7 +42,7 @@ public class BaseBoltHeavySpell : Spell
     }
 
     public override void UseEffectEnemy(GameObject enemy){
-        enemy.GetComponent<MoveBlock>().health-=11;
+        enemy.GetComponent<MoveBlock>().health-=damage;
     }
 
     void OnTriggerEnter(Collider other){

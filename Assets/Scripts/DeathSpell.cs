@@ -52,7 +52,7 @@ public class DeathSpell : Spell
     }
 
     public override void UseEffectEnemy(GameObject enemy){
-        enemy.GetComponent<MoveBlock>().health-=damage;
+        enemy.GetComponent<MoveBlock>().poison(0.01f,5);
     }
 
     public void OnParticleCollision(GameObject other)
