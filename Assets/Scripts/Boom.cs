@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class Boom : MonoBehaviour
 {
-    float aliveTime = 1f;
-    bool dying = true;
+    protected float aliveTime = 0.05f;
+    protected bool dying = true;
     // Start is called before the first frame update
     void Start()
+    {
+        StartStuff();
+    }
+
+    public virtual void StartStuff()
     {
         
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         if(dying){
             aliveTime-=Time.deltaTime;
@@ -23,7 +28,7 @@ public class Boom : MonoBehaviour
         }
     }
 
-    public void kill(){
+    public virtual void kill(){
 
         GetComponent<ParticleSystem>().Stop();
         dying = true;

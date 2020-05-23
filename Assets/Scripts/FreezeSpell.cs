@@ -48,7 +48,7 @@ public class FreezeSpell : Spell
             }
         }else{
             if(currExplosion!=null){
-                currExplosion.GetComponent<Explosion>().kill();
+                currExplosion.GetComponent<Boom>().kill();
             }
         }
 
@@ -72,7 +72,7 @@ public class FreezeSpell : Spell
     public override void StopEffect(){
         going = false;
         if(currExplosion!=null){
-            currExplosion.GetComponent<Explosion>().kill();
+            currExplosion.GetComponent<Boom>().kill();
         }
         material.SetFloat("_Density",Mathf.Lerp(1.3f,material.GetFloat("_Density"),dieTime/0.5f));
         if(dieTime<0){
