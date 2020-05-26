@@ -92,7 +92,7 @@ public class MoveHeinz : MonoBehaviour {
 		
 		launchAttack();
 		Physics.Raycast(cameraT.position, cameraT.forward, out hit, Mathf.Infinity, ~(1<<10));
-		print(knockback==0);
+		print(knockback);
 		
 		//Debug.DrawRay(wandTip.transform.position, (lookHit.distance!=0?(lookHit.point-wandTip.transform.position):cameraT.position+cameraT.forward*100)*100,Color.red);
 	}
@@ -245,7 +245,7 @@ public class MoveHeinz : MonoBehaviour {
 				if(knockback<6){
 					knockbackdirection*=-1;
 				}else{
-					
+				
 				}
 			}
 			knockbackdirection *= knockbackspeed;
