@@ -15,7 +15,7 @@ public class FreezeSpell : Spell
         speedDamage = 1;
         damage = 0.4f;
         material = GetComponent<Renderer>().material;
-        explosion = (GameObject)Resources.Load("Prefabs/Explosion");
+        explosion = (GameObject)Resources.Load("Prefabs/FreezeExplosion");
         dieTime = 0.5f;
     }
 
