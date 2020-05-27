@@ -32,13 +32,6 @@ public class DeathSpell : Spell
 		if(!beamLine.isEmitting){
 			beamLine.Play();
 		}
-        if(Physics.Raycast(player.wandTip.transform.position, player.cameraT.forward, out player.hit))
- 		{
-     		GameObject block = player.hit.collider.gameObject;
-			if(block.tag == "EnemyCube"){
-				//UseEffectEnemy(block);
-			}
- 		}
     }
 
     public override void StopEffect(){
@@ -57,7 +50,7 @@ public class DeathSpell : Spell
 
     public void OnParticleCollision(GameObject other)
     {
-        if(other.tag == "EnemyCube"){
+        if(other.tag == opposing){
 			UseEffectEnemy(other);
 		}
     }   

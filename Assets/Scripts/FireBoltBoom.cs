@@ -5,12 +5,21 @@ using UnityEngine;
 public class FireBoltBoom : Boom
 {   
     private float totalTime = 0.8f;
+    private MoveHeinz player;
     public float radius = 20;
+    public string opposing;
+    public string origin;
     // Start is called before the first frame update
     public override void StartStuff(){
         transform.localScale = Vector3.zero;
         dying = true;
         aliveTime = totalTime;
+    }
+
+    public void SetPlayer(MoveHeinz boi){
+        player = boi;
+        origin = boi.gameObject.tag;
+        opposing = origin == "Player"?"Enemy":"Player";
     }
 
     // Update is called once per frame
@@ -29,13 +38,13 @@ public class FireBoltBoom : Boom
     }
 
     void OnTriggerEnter(Collider other){
-        if(other.gameObject.tag == "Player"||other.gameObject.tag == "Spell"){
+        if(other.gameObject.tag == origin||other.gameObject.tag == "Spell"){
             return;
         }
-        if(other.gameObject.tag == "EnemyCube"){
+        if(other.gameObject.tag == opposing){
             Vector3 force = (other.gameObject.transform.position-transform.position).normalized*radius*200;
-            other.gameObject.GetComponent<Rigidbody>().AddForce(force);
             other.gameObject.GetComponent<MoveBlock>().health-=radius;
+            other.gameObject.GetComponent<Rigidbody>().AddForce(force);
         }
     }
 

@@ -31,7 +31,8 @@ public class BaseBoltSpell : Spell
         transform.forward = (player.hit.distance!=0?player.hit.point:player.cameraT.position+player.cameraT.forward*100)-player.wandTip.transform.position;
         
 		if(spawnTimer<=0){
-            Instantiate(bolt,player.wandTip.transform.position, Quaternion.LookRotation(transform.up));
+            GameObject firedBolt = Instantiate(bolt,player.wandTip.transform.position, Quaternion.LookRotation(transform.up));
+            firedBolt.GetComponent<Spell>().SetPlayer(player);
             spawnTimer = spawntime;
         }
         spawnTimer -= Time.deltaTime;

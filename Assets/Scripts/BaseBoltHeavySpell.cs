@@ -46,11 +46,11 @@ public class BaseBoltHeavySpell : Spell
     }
 
     void OnTriggerEnter(Collider other){
-        if(other.gameObject.tag == "Player"||other.gameObject.tag == "Spell"){
+        if(other.gameObject.tag == origin||other.gameObject.tag == "Spell"){
             return;
         }
         Instantiate(explosion, other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position), Quaternion.LookRotation(Vector3.up)); 
-        if(other.gameObject.tag == "EnemyCube"){
+        if(other.gameObject.tag == opposing){
             UseEffectEnemy(other.gameObject);
         }
         StopEffect();

@@ -4,8 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - EnemyCube
   - Spell
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -19,7 +19,7 @@ TagManager:
   - Glow
   - Player
   - Terrain
-  - 
+  - Enemy
   - 
   - 
   - 

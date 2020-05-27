@@ -42,6 +42,7 @@ public class FireBoltSpell : Spell
 
     public override void StopEffect(){
         GameObject firedBolt = Instantiate(bolt, player.wandTip.transform.position,Quaternion.identity);
+        firedBolt.GetComponent<Spell>().SetPlayer(player);
         firedBolt.GetComponent<Spell>().damage = Mathf.Clamp(timer/endTime,0.2f,1)*20;
         Destroy(gameObject);
     }

@@ -34,10 +34,12 @@ public class FreezeSpell : Spell
         material.SetFloat("_Density",Mathf.Lerp(1.3f,-0.2f,densityTime/0.5f));
         densityTime+=Time.deltaTime;
 
-        float dist = Mathf.Clamp((player.hit.distance!=0?player.hit.distance:200)/2,0,100);
+        Vector3 wandToPoint = (player.hit.distance!=0?player.hit.point:(player.cameraT.position+player.cameraT.forward*100))-player.wandTip.transform.position;
+
+        float dist = wandToPoint.magnitude/2;
         float xzscale = 0.3f*Mathf.Atan(dist/10)+0.1f;
         transform.localScale = new Vector3(xzscale,dist,xzscale);
-        transform.up = (player.hit.distance!=0?player.hit.point:player.cameraT.position+player.cameraT.forward*100)-player.wandTip.transform.position;
+        transform.up = wandToPoint;
         transform.position = (player.wandTip.transform.position+(transform.localScale.y*transform.up));
        
         if(player.hit.distance!=0&&player.hit.distance<100){
@@ -50,13 +52,14 @@ public class FreezeSpell : Spell
         }else{
             if(currExplosion!=null){
                 currExplosion.GetComponent<Boom>().kill();
+                currExplosion = null;
             }
         }
 
-        if(player.hit.collider!=null)
+        if(player.hit.collider!=null&&wandToPoint.magnitude<100)
  		{
      		GameObject block = player.hit.collider.gameObject;
-			if(block.tag == "EnemyCube"){
+			if(block.tag == opposing){
 				UseEffectEnemy(block);
 			}
  		}

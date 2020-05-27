@@ -9,13 +9,21 @@ public class Spell : MonoBehaviour
     public bool going = true;
     public bool buff = false;//spell that boosts player stats or not
     public float damage = 0;
+    public string opposing;
+    public string origin;
     
     
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("paris").GetComponent<MoveHeinz>();
+        //player = GameObject.Find("paris").GetComponent<MoveHeinz>();
         StartStuff();
+    }
+
+    public virtual void SetPlayer(MoveHeinz boi){
+        player = boi;
+        origin = boi.gameObject.tag;
+        opposing = origin == "Player"?"Enemy":"Player";
     }
 
     public virtual void StartStuff(){

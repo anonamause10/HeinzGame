@@ -44,12 +44,13 @@ public class FireBolt : Spell
     }
 
     void OnTriggerEnter(Collider other){
-        if(other.gameObject.tag == "Player"||other.gameObject.tag == "Spell"){
+        if(other.gameObject.tag == origin||other.gameObject.tag == "Spell"){
             return;
         }
         GameObject baboom = Instantiate(explosion, other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position), Quaternion.LookRotation(Vector3.up)); 
         baboom.GetComponent<FireBoltBoom>().radius = damage;
-        if(other.gameObject.tag == "EnemyCube"){
+        baboom.GetComponent<FireBoltBoom>().SetPlayer(player);
+        if(other.gameObject.tag == opposing){
             UseEffectEnemy(other.gameObject);
         }
         StopEffect();
