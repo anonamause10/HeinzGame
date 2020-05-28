@@ -13,6 +13,7 @@ public class CharInput : MonoBehaviour
     public bool jumpingPrev = false;
     public bool switchAttackMode = false;
     public bool switchSpell;
+    public bool spawnBoi;
     public int knockback;
     public Transform cameraT;
 
@@ -30,6 +31,7 @@ public class CharInput : MonoBehaviour
         switchAttackMode = Input.GetMouseButtonDown(2);
         knockback = GetPressedNumber();
         walking = Input.GetKey (KeyCode.LeftShift);
+        spawnBoi = Input.GetKeyDown(KeyCode.T);
     }
 
     public int GetPressedNumber() {

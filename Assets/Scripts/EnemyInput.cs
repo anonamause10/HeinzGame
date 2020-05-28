@@ -9,7 +9,7 @@ public class EnemyInput : CharInput
     public GameObject player;
     public MoveHeinz playerScript;
 
-    public override void Start(){
+    public override void Start(){    
         player = GameObject.Find("paris");
         playerScript = player.GetComponent<MoveHeinz>();
         cameraT = centerPoint.transform;

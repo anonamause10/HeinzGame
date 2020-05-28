@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 
+[DefaultExecutionOrder(100)]
 public class MoveHeinz : MonoBehaviour {
 	//public vars
 
@@ -17,9 +18,18 @@ public class MoveHeinz : MonoBehaviour {
 	protected float turnSmoothVelocityY;
 	public bool walking = false;
 
+	public float totalHealth = 20;
+	public float health;
+	protected float dps = 0;
+    protected float dpsTime = 0;
+    protected bool poisoned = false;
+	public bool dead = false;
+
 	//move and jump stuff
 	protected float speedSmoothTime = 0.1f;
 	protected float force = 40f;
+	public float speedMult = 1.0f;
+	protected float speedMultDamp = 0;
 	public float currentSpeed;
 	protected float speedSmoothVelocity = 1f;
 	protected float moveMode;
@@ -28,14 +38,16 @@ public class MoveHeinz : MonoBehaviour {
 	protected float knockbackdamp;
 	protected float knockbackspeed = 20;
 	protected Vector2 knockbackdirection;
-    protected Vector3 moveVec;
+	protected Vector3 projVec;//vector representing projectiles direction from transform.position
+	protected Vector3 forwardVec;
+    public Vector3 moveVec;
 	protected Vector2 inputDir;
 	protected Vector2 inputSmoothDamp;
 	protected float jumpTimeCounter;
 	protected float jumpTime=1;
 	protected bool isJumping;
 	public bool flying = false;
-	protected bool outFly = false;
+	public bool outFly = false;
 	protected int jumpmode;
 
 	//attack stuff
@@ -66,7 +78,7 @@ public class MoveHeinz : MonoBehaviour {
 	protected Rigidbody rbody;
 	public Transform cameraT;
 
-	void Start () {
+	public virtual void Start () {
 		charInput = GetComponent<CharInput>();
 		controller = GetComponent<CharacterController>();
 		animator = GetComponent<Animator> ();
@@ -78,10 +90,13 @@ public class MoveHeinz : MonoBehaviour {
 		spells = new String[]{"FreezeSpell","DeathSpell","FireBoltCharge","BaseBoltSpell","BaseBoltHeavySpell"};
 		spell = (GameObject)Resources.Load("Prefabs/" + spells[spellIndex]);
 		crosshair = GameObject.Find("Canvas").transform.Find("Crosshair");
+		health = totalHealth;
+		
 		//animator.speed = 0.5f;
 	}
 
-	void LateUpdate () {
+	public virtual void LateUpdate () {
+		HandleDamage();
 		attackingPrev = isAttacking;
 		charInput.CollectInputs();
 		Knockback();
@@ -92,6 +107,7 @@ public class MoveHeinz : MonoBehaviour {
 			move();
 		}		
 		attack();
+
 		
 		launchAttack();
 		Physics.Raycast(cameraT.position, cameraT.forward, out hit, Mathf.Infinity, ~(1<<10));
@@ -100,9 +116,10 @@ public class MoveHeinz : MonoBehaviour {
 		//Debug.DrawRay(wandTip.transform.position, (lookHit.distance!=0?(lookHit.point-wandTip.transform.position):cameraT.position+cameraT.forward*100)*100,Color.red);
 	}
 
-	void move(){
+	public virtual void move(){
 		//walking
 		jumpmode = 0;
+		speedMult = Mathf.SmoothDamp(speedMult, 1, ref speedMultDamp, 15f);
 		if(knockback==0){
 			Vector2 input = charInput.inputDir;
 			inputDir = Vector2.SmoothDamp(inputDir, input.normalized, ref inputSmoothDamp, !controller.isGrounded?turnSmoothTime:turnSmoothTime*1f*((currentSpeed<5?5:currentSpeed)/runSpeed));
@@ -118,8 +135,9 @@ public class MoveHeinz : MonoBehaviour {
 			currentSpeed = Mathf.SmoothDamp (currentSpeed, targetSpeed, ref speedSmoothVelocity, controller.isGrounded?speedSmoothTime:5f);
 		}
 
-		moveVec = (((attackMode&&!outFly)?(Quaternion.AngleAxis(cameraT.eulerAngles.y, Vector3.up)*new Vector3(inputDir.x,0,inputDir.y)):transform.forward) * currentSpeed)+(transform.up*moveVec.y)+(knockback!=0? new Vector3(knockbackdirection.x,0,knockbackdirection.y):Vector3.zero);
-
+		if(knockback==0&&controller.isGrounded){
+			moveVec = speedMult*((((attackMode&&!outFly)?(Quaternion.AngleAxis(cameraT.eulerAngles.y, Vector3.up)*new Vector3(inputDir.x,0,inputDir.y)):transform.forward) * currentSpeed))+(transform.up*moveVec.y)+(dead?0:1)*(knockback!=0? new Vector3(knockbackdirection.x,0,knockbackdirection.y):Vector3.zero);
+		}
 		//movement handling
         moveVec.y-=gravity*Time.deltaTime;
 		controller.Move(moveVec* Time.deltaTime);
@@ -134,7 +152,7 @@ public class MoveHeinz : MonoBehaviour {
 		//Debug.DrawRay(transform.position+(3*Vector3.up),(new Vector3(moveVec.x,0,moveVec.z))*100, Color.blue);
 	}
 
-	void jump(){
+	public virtual void jump(){
 		//jumping
 		if(controller.isGrounded&&charInput.jumping){
 			moveVec.y = 0;
@@ -166,7 +184,7 @@ public class MoveHeinz : MonoBehaviour {
 		}
 	}
 
-	void fly(){
+	public virtual void fly(){
 		outFly = false;
 
 		if (currentSpeed > 5 || charInput.leftMouseDown) {
@@ -187,11 +205,14 @@ public class MoveHeinz : MonoBehaviour {
 		animator.SetInteger ("jump", 2);
 	}
 
-	void attack(){
+	public virtual void attack(){
 		isAttacking = false;
 		if(charInput.switchSpell){
 			spellIndex = (spellIndex+1)%spells.Length;
 			spell = (GameObject)Resources.Load("Prefabs/" + spells[spellIndex]);
+		}
+		if(charInput.spawnBoi){
+			Instantiate((GameObject)Resources.Load("Prefabs/Enemies/Enemy"),(hit.distance!=0?hit.point:(cameraT.position+cameraT.forward*100)),Quaternion.identity);
 		}
 		//attacking
 		bool valid = attackValid();
@@ -224,18 +245,28 @@ public class MoveHeinz : MonoBehaviour {
 		attackValidPrev = valid;
 	}
 
-	public void Knockback(){
-		int num = charInput.knockback;
+	public virtual void SetKnockbackDirection(Vector3 projPos,float magnitude){
+		projVec = Vector3.ProjectOnPlane(projPos-transform.position,Vector3.up);
+		forwardVec = Vector3.ProjectOnPlane(transform.forward,Vector3.up);
+		float dotProduct = Vector3.Dot(projVec,forwardVec);
+		int num = dotProduct>0?UnityEngine.Random.Range(1,4):4;
 		if(num!=-1&&knockback==0){
 			knockback = num;
-			knockbackspeed = 120;
+			knockbackspeed = magnitude;
 			knockbackdamp = 0;
 		}
+		transform.forward = (dotProduct>0?1:-1)*projVec;
+	}
+
+	public virtual void Knockback(){
 		knockbackdirection = new Vector2(transform.forward.x,transform.forward.z);
 		if(knockback!=0&&controller.isGrounded){
+			if(knockback>7){
+				return;
+			}
 			inputDir = Vector2.zero;
 			if(knockback<5){
-				knockbackspeed = Mathf.SmoothDamp(knockbackspeed,0,ref knockbackdamp,knockback==4?0.3f:0.1f);
+				knockbackspeed = Mathf.SmoothDamp(knockbackspeed,0,ref knockbackdamp,knockback==4?0.2f:0.1f);
 				if(knockback<4){
 					knockbackdirection*=-1;
 				}else{
@@ -256,7 +287,7 @@ public class MoveHeinz : MonoBehaviour {
 		}
 	}
 
-	void launchAttack(){
+	public virtual void launchAttack(){
 		if(isAttacking){
 			if(spell.GetComponent<Spell>().NewEffectValid(this)){
 				currSpell = Instantiate(spell,wandTip.transform.position,Quaternion.identity) as GameObject;
@@ -267,7 +298,7 @@ public class MoveHeinz : MonoBehaviour {
 		}
 	}
 
-	void rotateArm(Vector3 forward, Vector3 inputDir){
+	public virtual void rotateArm(Vector3 forward, Vector3 inputDir){
 		//   1  0  7
 		//    \ | /
 		//     \|/
@@ -298,7 +329,7 @@ public class MoveHeinz : MonoBehaviour {
 
 	}
 
-	bool attackValid(){
+	public virtual bool attackValid(){
 		Vector3 forward = Vector3.ProjectOnPlane(transform.forward, Vector3.up);
 		Vector3 camforward = Vector3.ProjectOnPlane(cameraT.forward, Vector3.up);
 		float degree = Vector3.SignedAngle(camforward, forward, Vector3.up);
@@ -306,8 +337,33 @@ public class MoveHeinz : MonoBehaviour {
 		return !(degree>135&&degree<225)&&spell.GetComponent<Spell>().EffectValid(this)&&knockback==0;
 	}
 
-	public bool MouseDown(){
+	public virtual bool MouseDown(){
 		return charInput.leftMouseDown&&!charInput.leftMouseDownPrev;
+	}
+
+	public virtual void HandleDamage(){
+		if(poisoned){
+            if(dpsTime>0){
+                health-=dps;
+                dpsTime-=Time.deltaTime;
+            }else{
+                poisoned = false;
+            }
+        }
+        if((dead || health<0)){
+            kill();
+        }
+	}
+
+	public virtual void poison(float amount,float time){
+        dps = 0.04f*Mathf.Atan(200*(amount+dps));
+        dpsTime = 2.5f*Mathf.Atan(2000*(dpsTime+time));
+        poisoned = true;
+    }
+
+	public virtual void kill(){
+		dead = true;
+		Destroy(gameObject);
 	}
 
 }

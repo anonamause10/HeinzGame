@@ -43,8 +43,15 @@ public class FireBoltBoom : Boom
         }
         if(other.gameObject.tag == opposing){
             Vector3 force = (other.gameObject.transform.position-transform.position).normalized*radius*200;
-            other.gameObject.GetComponent<MoveBlock>().health-=radius;
-            other.gameObject.GetComponent<Rigidbody>().AddForce(force);
+            MoveHeinz playerScript = other.gameObject.GetComponent<MoveHeinz>();
+            playerScript.health-=radius;
+            if(!other.gameObject.GetComponent<Rigidbody>().isKinematic){
+                other.gameObject.GetComponent<Rigidbody>().AddForce(force);
+            }else{
+                playerScript.moveVec = (force+Vector3.up*radius*100)/100;
+                playerScript.SetKnockbackDirection(transform.position,radius*5);
+                playerScript.currentSpeed = force.magnitude/100;
+            }
         }
     }
 

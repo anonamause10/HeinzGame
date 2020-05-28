@@ -42,7 +42,8 @@ public class BaseBoltHeavySpell : Spell
     }
 
     public override void UseEffectEnemy(GameObject enemy){
-        enemy.GetComponent<MoveBlock>().health-=damage;
+        enemy.GetComponent<MoveHeinz>().health-=damage;
+        enemy.GetComponent<MoveHeinz>().SetKnockbackDirection(transform.position,damage * 4);
     }
 
     void OnTriggerEnter(Collider other){

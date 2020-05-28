@@ -12,8 +12,8 @@ public class FreezeSpell : Spell
     private float speedDamage;
 
     public override void StartStuff(){
-        speedDamage = 1;
-        damage = 0.4f;
+        speedDamage = 0.05f;
+        damage = 1f;//damage per second for this case
         material = GetComponent<Renderer>().material;
         explosion = (GameObject)Resources.Load("Prefabs/FreezeExplosion");
         dieTime = 0.5f;
@@ -66,10 +66,10 @@ public class FreezeSpell : Spell
     }
 
     public override void UseEffectEnemy(GameObject enemy){
-        MoveBlock blockScript = enemy.GetComponent<MoveBlock>();
-        if(blockScript.speed>0){
-            blockScript.speed-=speedDamage;
-            blockScript.health-=damage;
+        MoveHeinz blockScript = enemy.GetComponent<MoveHeinz>();
+        if(blockScript.speedMult>0){
+            blockScript.speedMult-=speedDamage;
+            blockScript.health-=damage*Time.deltaTime;
         }
     }
 
