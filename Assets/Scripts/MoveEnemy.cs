@@ -14,7 +14,6 @@ public class MoveEnemy : MoveHeinz
     }
 
     public override void kill(){
-        dead = true;
         knockback = Vector3.Dot(projVec,forwardVec)>0?8:9;
         animator.SetInteger("knockback", Vector3.Dot(projVec,forwardVec)>0?8:9);
         if(animator.GetCurrentAnimatorStateInfo(0).IsName("Knockback.dead")){

@@ -41,6 +41,21 @@ public class MoveBlock : MoveHeinz
 
     }
 
+    public override void HandleDamage(){
+        if(poisoned){
+            if(dpsTime>0){
+                health-=dps;
+                dpsTime-=Time.deltaTime;
+            }else{
+                poisoned = false;
+            }
+        }
+		dead = health<0;
+        if((dead)){
+            kill();
+        }
+    }
+
     public override void kill(){
         Destroy(gameObject);
     } 

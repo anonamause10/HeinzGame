@@ -41,6 +41,8 @@ public class MoveHeinz : MonoBehaviour {
 	protected Vector3 projVec;//vector representing projectiles direction from transform.position
 	protected Vector3 forwardVec;
     public Vector3 moveVec;
+	public Vector3 accelVec;
+	public Vector3 forceVelVec;
 	protected Vector2 inputDir;
 	protected Vector2 inputSmoothDamp;
 	protected float jumpTimeCounter;
@@ -104,7 +106,11 @@ public class MoveHeinz : MonoBehaviour {
 			fly();
 		}else{
 			jump();
-			move();
+			//if(knockback==0){
+				move();
+			//}else{
+			//	KnockbackMove();
+			//}
 		}		
 		attack();
 
@@ -118,6 +124,7 @@ public class MoveHeinz : MonoBehaviour {
 
 	public virtual void move(){
 		//walking
+		
 		jumpmode = 0;
 		speedMult = Mathf.SmoothDamp(speedMult, 1, ref speedMultDamp, 15f);
 		if(knockback==0){
@@ -135,11 +142,13 @@ public class MoveHeinz : MonoBehaviour {
 			currentSpeed = Mathf.SmoothDamp (currentSpeed, targetSpeed, ref speedSmoothVelocity, controller.isGrounded?speedSmoothTime:5f);
 		}
 
-		if(knockback==0&&controller.isGrounded){
-			moveVec = speedMult*((((attackMode&&!outFly)?(Quaternion.AngleAxis(cameraT.eulerAngles.y, Vector3.up)*new Vector3(inputDir.x,0,inputDir.y)):transform.forward) * currentSpeed))+(transform.up*moveVec.y)+(dead?0:1)*(knockback!=0? new Vector3(knockbackdirection.x,0,knockbackdirection.y):Vector3.zero);
-		}
+		
+		moveVec = speedMult*((((attackMode&&!outFly)?(Quaternion.AngleAxis(cameraT.eulerAngles.y, Vector3.up)*new Vector3(inputDir.x,0,inputDir.y)):(knockback==0?transform.forward:forceVelVec)) * currentSpeed))+(transform.up*moveVec.y)+(dead?0:1)*(knockback!=0? new Vector3(knockbackdirection.x,0,knockbackdirection.y):Vector3.zero);
+		
+		
 		//movement handling
-        moveVec.y-=gravity*Time.deltaTime;
+		accelVec.y = -gravity;
+        moveVec+=accelVec*Time.deltaTime;
 		controller.Move(moveVec* Time.deltaTime);
 		float animationSpeedPercent = ((!walking) ? currentSpeed / runSpeed : currentSpeed / walkSpeed * .5f);
 		float targetMoveMode = attackMode?1:0;
@@ -151,6 +160,14 @@ public class MoveHeinz : MonoBehaviour {
 		animator.SetFloat("moveY", inputDir.y*animationSpeedPercent);
 		//Debug.DrawRay(transform.position+(3*Vector3.up),(new Vector3(moveVec.x,0,moveVec.z))*100, Color.blue);
 	}
+
+	/*public virtual void KnockbackMove(){
+		moveVec = (transform.up*moveVec.y)+(dead&&controller.isGrounded?0:1)*-1*knockbackspeed*(knockback!=0? new Vector3(knockbackdirection.x,0,knockbackdirection.y):Vector3.zero);
+		accelVec.y = -gravity;
+        moveVec+=accelVec*Time.deltaTime;
+		controller.Move(moveVec* Time.deltaTime);
+		animator.SetInteger("knockback", knockback);
+	}*/
 
 	public virtual void jump(){
 		//jumping
@@ -245,6 +262,11 @@ public class MoveHeinz : MonoBehaviour {
 		attackValidPrev = valid;
 	}
 
+	public virtual void ApplyForce(Vector3 force){
+		forceVelVec = force;
+		controller.Move(moveVec* Time.deltaTime);
+	}
+
 	public virtual void SetKnockbackDirection(Vector3 projPos,float magnitude){
 		projVec = Vector3.ProjectOnPlane(projPos-transform.position,Vector3.up);
 		forwardVec = Vector3.ProjectOnPlane(transform.forward,Vector3.up);
@@ -256,6 +278,7 @@ public class MoveHeinz : MonoBehaviour {
 			knockbackdamp = 0;
 		}
 		transform.forward = (dotProduct>0?1:-1)*projVec;
+		ApplyForce(magnitude*(projPos-transform.position));
 	}
 
 	public virtual void Knockback(){
@@ -282,7 +305,7 @@ public class MoveHeinz : MonoBehaviour {
 			}
 			knockbackdirection *= knockbackspeed;
 		}
-		if(animator.IsInTransition(0)){
+		if(animator.IsInTransition(0)&&controller.isGrounded){
 			knockback = 0;
 		}
 	}
@@ -350,7 +373,8 @@ public class MoveHeinz : MonoBehaviour {
                 poisoned = false;
             }
         }
-        if((dead || health<0)){
+		dead = health<0;
+        if((dead)&&controller.isGrounded){
             kill();
         }
 	}
@@ -362,7 +386,6 @@ public class MoveHeinz : MonoBehaviour {
     }
 
 	public virtual void kill(){
-		dead = true;
 		Destroy(gameObject);
 	}
 
