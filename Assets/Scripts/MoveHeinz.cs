@@ -279,7 +279,9 @@ public class MoveHeinz : MonoBehaviour {
 			knockbackspeed = magnitude;
 			knockbackdamp = 0;
 		}
-		transform.forward = (dotProduct>0?1:-1)*projVec;
+		if(magnitude<50){
+			transform.forward = (dotProduct>0?1:-1)*projVec;
+		}
 		ApplyForce(magnitude*(centerPoint.position-projPos));
 	}
 
