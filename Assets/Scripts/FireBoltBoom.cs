@@ -45,13 +45,10 @@ public class FireBoltBoom : Boom
             Vector3 force = (other.gameObject.transform.position-transform.position).normalized*radius*200;
             MoveHeinz playerScript = other.gameObject.GetComponent<MoveHeinz>();
             playerScript.health-=radius;
-            other.gameObject.GetComponent<Rigidbody>().AddForce(force);
             if(!other.gameObject.GetComponent<Rigidbody>().isKinematic){
                 other.gameObject.GetComponent<Rigidbody>().AddForce(force);
             }else{
-                playerScript.ApplyForce(force/100);
-                playerScript.SetKnockbackDirection(transform.position,radius*5);
-                playerScript.currentSpeed = force.magnitude/100;
+                playerScript.SetKnockbackDirection(transform.position,radius);
             }
         }
     }
