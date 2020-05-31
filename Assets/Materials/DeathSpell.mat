@@ -49,7 +49,7 @@ Material:
     - _BumpScale: 1
     - _Cull: 2
     - _Cutoff: 0.5
-    - _Density: -1.04
+    - _Density: -0.79
     - _DstBlend: 0
     - _EdgeWidth: 0.13
     - _GlossMapScale: 1

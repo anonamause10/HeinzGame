@@ -1,168 +1,488 @@
 fileFormatVersion: 2
 guid: 08b54af7bed44a646bfcf4991202e369
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: Armature
-    100002: Bone
-    100004: Bone.001
-    100006: Bone.002
-    100008: Bone.003
-    100010: Bone.003_end
-    100012: Bone.004
-    100014: Bone.005
-    100016: Bone.006
-    100018: Bone.006_end
-    100020: Bone.007
-    100022: Bone.008
-    100024: Bone.009
-    100026: Bone.009_end
-    100028: Bone.010
-    100030: Bone.011
-    100032: Bone.012
-    100034: Bone.012_end
-    100036: Camera
-    100038: Cone
-    100040: Cylinder
-    100042: Cylinder.001
-    100044: Cylinder.002
-    100046: Cylinder.003
-    100048: Cylinder.004
-    100050: Cylinder.005
-    100052: Cylinder.006
-    100054: Cylinder.007
-    100056: Cylinder.008
-    100058: Cylinder.009
-    100060: Cylinder.011
-    100062: Cylinder.012
-    100064: Cylinder.013
-    100066: Empty
-    100068: //RootNode
-    100070: Light
-    100072: Sphere
-    100074: Torus.002
-    100076: Cylinder.010
-    100078: Plane
-    400000: Armature
-    400002: Bone
-    400004: Bone.001
-    400006: Bone.002
-    400008: Bone.003
-    400010: Bone.003_end
-    400012: Bone.004
-    400014: Bone.005
-    400016: Bone.006
-    400018: Bone.006_end
-    400020: Bone.007
-    400022: Bone.008
-    400024: Bone.009
-    400026: Bone.009_end
-    400028: Bone.010
-    400030: Bone.011
-    400032: Bone.012
-    400034: Bone.012_end
-    400036: Camera
-    400038: Cone
-    400040: Cylinder
-    400042: Cylinder.001
-    400044: Cylinder.002
-    400046: Cylinder.003
-    400048: Cylinder.004
-    400050: Cylinder.005
-    400052: Cylinder.006
-    400054: Cylinder.007
-    400056: Cylinder.008
-    400058: Cylinder.009
-    400060: Cylinder.011
-    400062: Cylinder.012
-    400064: Cylinder.013
-    400066: Empty
-    400068: //RootNode
-    400070: Light
-    400072: Sphere
-    400074: Torus.002
-    400076: Cylinder.010
-    400078: Plane
-    2300000: Cone
-    2300002: Cylinder
-    2300004: Cylinder.001
-    2300006: Cylinder.002
-    2300008: Cylinder.003
-    2300010: Cylinder.004
-    2300012: Cylinder.005
-    2300014: Cylinder.006
-    2300016: Cylinder.007
-    2300018: Cylinder.008
-    2300020: Cylinder.009
-    2300022: Cylinder.011
-    2300024: Cylinder.012
-    2300026: Cylinder.013
-    2300028: Sphere
-    2300030: Torus.002
-    2300032: Cylinder.010
-    2300034: Plane
-    3300000: Cone
-    3300002: Cylinder
-    3300004: Cylinder.001
-    3300006: Cylinder.002
-    3300008: Cylinder.003
-    3300010: Cylinder.004
-    3300012: Cylinder.005
-    3300014: Cylinder.006
-    3300016: Cylinder.007
-    3300018: Cylinder.008
-    3300020: Cylinder.009
-    3300022: Cylinder.011
-    3300024: Cylinder.012
-    3300026: Cylinder.013
-    3300028: Sphere
-    3300030: Torus.002
-    3300032: Cylinder.010
-    3300034: Plane
-    4300000: Sphere
-    4300002: Cone
-    4300004: Cylinder.009
-    4300006: Cylinder.011
-    4300008: Cylinder.012
-    4300010: Cylinder.013
-    4300012: Cylinder.006
-    4300014: Cylinder.007
-    4300016: Cylinder.008
-    4300018: Cylinder.003
-    4300020: Cylinder.004
-    4300022: Cylinder.005
-    4300024: Torus.002
-    4300026: Cylinder.001
-    4300028: Cylinder
-    4300030: Cylinder.002
-    4300032: Cylinder.010
-    4300034: Plane
-    7400000: Hover
-    7400002: Light|Hover
-    7400004: Sphere|FullAttack
-    7400006: Cylinder.008|Run
-    7400008: Armature|FlickAttack
-    7400010: Armature|FullAttack
-    7400012: Armature|Hover
-    7400014: Armature|Idle
-    7400016: Armature|Jump
-    7400018: Armature|Run
-    7400020: Armature|Walk
-    7400022: Torus.002|FullAttack
-    7400024: Armature|RunAttack
-    7400026: Armature|RunFlickAttack
-    7400028: Armature|RunBackwards
-    7400030: Armature|AttackIdle
-    7400032: Armature|Fallback
-    7400034: Armature|Fallforward
-    7400036: Armature|Knockback1
-    7400038: Armature|Knockback2
-    7400040: Armature|Knockback3
-    7400042: Armature|Knockforward1
-    7400044: Armature|Dieback
-    7400046: Armature|Dieforward
-    9500000: //RootNode
-    11100000: //RootNode
+  serializedVersion: 19300
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Armature
+  - first:
+      1: 100002
+    second: Bone
+  - first:
+      1: 100004
+    second: Bone.001
+  - first:
+      1: 100006
+    second: Bone.002
+  - first:
+      1: 100008
+    second: Bone.003
+  - first:
+      1: 100010
+    second: Bone.003_end
+  - first:
+      1: 100012
+    second: Bone.004
+  - first:
+      1: 100014
+    second: Bone.005
+  - first:
+      1: 100016
+    second: Bone.006
+  - first:
+      1: 100018
+    second: Bone.006_end
+  - first:
+      1: 100020
+    second: Bone.007
+  - first:
+      1: 100022
+    second: Bone.008
+  - first:
+      1: 100024
+    second: Bone.009
+  - first:
+      1: 100026
+    second: Bone.009_end
+  - first:
+      1: 100028
+    second: Bone.010
+  - first:
+      1: 100030
+    second: Bone.011
+  - first:
+      1: 100032
+    second: Bone.012
+  - first:
+      1: 100034
+    second: Bone.012_end
+  - first:
+      1: 100036
+    second: Camera
+  - first:
+      1: 100038
+    second: Cone
+  - first:
+      1: 100040
+    second: Cylinder
+  - first:
+      1: 100042
+    second: Cylinder.001
+  - first:
+      1: 100044
+    second: Cylinder.002
+  - first:
+      1: 100046
+    second: Cylinder.003
+  - first:
+      1: 100048
+    second: Cylinder.004
+  - first:
+      1: 100050
+    second: Cylinder.005
+  - first:
+      1: 100052
+    second: Cylinder.006
+  - first:
+      1: 100054
+    second: Cylinder.007
+  - first:
+      1: 100056
+    second: Cylinder.008
+  - first:
+      1: 100058
+    second: Cylinder.009
+  - first:
+      1: 100060
+    second: Cylinder.011
+  - first:
+      1: 100062
+    second: Cylinder.012
+  - first:
+      1: 100064
+    second: Cylinder.013
+  - first:
+      1: 100066
+    second: Empty
+  - first:
+      1: 100068
+    second: //RootNode
+  - first:
+      1: 100070
+    second: Light
+  - first:
+      1: 100072
+    second: Sphere
+  - first:
+      1: 100074
+    second: Torus.002
+  - first:
+      1: 100076
+    second: Cylinder.010
+  - first:
+      1: 100078
+    second: Plane
+  - first:
+      4: 400000
+    second: Armature
+  - first:
+      4: 400002
+    second: Bone
+  - first:
+      4: 400004
+    second: Bone.001
+  - first:
+      4: 400006
+    second: Bone.002
+  - first:
+      4: 400008
+    second: Bone.003
+  - first:
+      4: 400010
+    second: Bone.003_end
+  - first:
+      4: 400012
+    second: Bone.004
+  - first:
+      4: 400014
+    second: Bone.005
+  - first:
+      4: 400016
+    second: Bone.006
+  - first:
+      4: 400018
+    second: Bone.006_end
+  - first:
+      4: 400020
+    second: Bone.007
+  - first:
+      4: 400022
+    second: Bone.008
+  - first:
+      4: 400024
+    second: Bone.009
+  - first:
+      4: 400026
+    second: Bone.009_end
+  - first:
+      4: 400028
+    second: Bone.010
+  - first:
+      4: 400030
+    second: Bone.011
+  - first:
+      4: 400032
+    second: Bone.012
+  - first:
+      4: 400034
+    second: Bone.012_end
+  - first:
+      4: 400036
+    second: Camera
+  - first:
+      4: 400038
+    second: Cone
+  - first:
+      4: 400040
+    second: Cylinder
+  - first:
+      4: 400042
+    second: Cylinder.001
+  - first:
+      4: 400044
+    second: Cylinder.002
+  - first:
+      4: 400046
+    second: Cylinder.003
+  - first:
+      4: 400048
+    second: Cylinder.004
+  - first:
+      4: 400050
+    second: Cylinder.005
+  - first:
+      4: 400052
+    second: Cylinder.006
+  - first:
+      4: 400054
+    second: Cylinder.007
+  - first:
+      4: 400056
+    second: Cylinder.008
+  - first:
+      4: 400058
+    second: Cylinder.009
+  - first:
+      4: 400060
+    second: Cylinder.011
+  - first:
+      4: 400062
+    second: Cylinder.012
+  - first:
+      4: 400064
+    second: Cylinder.013
+  - first:
+      4: 400066
+    second: Empty
+  - first:
+      4: 400068
+    second: //RootNode
+  - first:
+      4: 400070
+    second: Light
+  - first:
+      4: 400072
+    second: Sphere
+  - first:
+      4: 400074
+    second: Torus.002
+  - first:
+      4: 400076
+    second: Cylinder.010
+  - first:
+      4: 400078
+    second: Plane
+  - first:
+      23: 2300000
+    second: Cone
+  - first:
+      23: 2300002
+    second: Cylinder
+  - first:
+      23: 2300004
+    second: Cylinder.001
+  - first:
+      23: 2300006
+    second: Cylinder.002
+  - first:
+      23: 2300008
+    second: Cylinder.003
+  - first:
+      23: 2300010
+    second: Cylinder.004
+  - first:
+      23: 2300012
+    second: Cylinder.005
+  - first:
+      23: 2300014
+    second: Cylinder.006
+  - first:
+      23: 2300016
+    second: Cylinder.007
+  - first:
+      23: 2300018
+    second: Cylinder.008
+  - first:
+      23: 2300020
+    second: Cylinder.009
+  - first:
+      23: 2300022
+    second: Cylinder.011
+  - first:
+      23: 2300024
+    second: Cylinder.012
+  - first:
+      23: 2300026
+    second: Cylinder.013
+  - first:
+      23: 2300028
+    second: Sphere
+  - first:
+      23: 2300030
+    second: Torus.002
+  - first:
+      23: 2300032
+    second: Cylinder.010
+  - first:
+      23: 2300034
+    second: Plane
+  - first:
+      33: 3300000
+    second: Cone
+  - first:
+      33: 3300002
+    second: Cylinder
+  - first:
+      33: 3300004
+    second: Cylinder.001
+  - first:
+      33: 3300006
+    second: Cylinder.002
+  - first:
+      33: 3300008
+    second: Cylinder.003
+  - first:
+      33: 3300010
+    second: Cylinder.004
+  - first:
+      33: 3300012
+    second: Cylinder.005
+  - first:
+      33: 3300014
+    second: Cylinder.006
+  - first:
+      33: 3300016
+    second: Cylinder.007
+  - first:
+      33: 3300018
+    second: Cylinder.008
+  - first:
+      33: 3300020
+    second: Cylinder.009
+  - first:
+      33: 3300022
+    second: Cylinder.011
+  - first:
+      33: 3300024
+    second: Cylinder.012
+  - first:
+      33: 3300026
+    second: Cylinder.013
+  - first:
+      33: 3300028
+    second: Sphere
+  - first:
+      33: 3300030
+    second: Torus.002
+  - first:
+      33: 3300032
+    second: Cylinder.010
+  - first:
+      33: 3300034
+    second: Plane
+  - first:
+      43: 4300000
+    second: Sphere
+  - first:
+      43: 4300002
+    second: Cone
+  - first:
+      43: 4300004
+    second: Cylinder.009
+  - first:
+      43: 4300006
+    second: Cylinder.011
+  - first:
+      43: 4300008
+    second: Cylinder.012
+  - first:
+      43: 4300010
+    second: Cylinder.013
+  - first:
+      43: 4300012
+    second: Cylinder.006
+  - first:
+      43: 4300014
+    second: Cylinder.007
+  - first:
+      43: 4300016
+    second: Cylinder.008
+  - first:
+      43: 4300018
+    second: Cylinder.003
+  - first:
+      43: 4300020
+    second: Cylinder.004
+  - first:
+      43: 4300022
+    second: Cylinder.005
+  - first:
+      43: 4300024
+    second: Torus.002
+  - first:
+      43: 4300026
+    second: Cylinder.001
+  - first:
+      43: 4300028
+    second: Cylinder
+  - first:
+      43: 4300030
+    second: Cylinder.002
+  - first:
+      43: 4300032
+    second: Cylinder.010
+  - first:
+      43: 4300034
+    second: Plane
+  - first:
+      74: 7400000
+    second: Hover
+  - first:
+      74: 7400002
+    second: Light|Hover
+  - first:
+      74: 7400004
+    second: Sphere|FullAttack
+  - first:
+      74: 7400006
+    second: Cylinder.008|Run
+  - first:
+      74: 7400008
+    second: Armature|FlickAttack
+  - first:
+      74: 7400010
+    second: Armature|FullAttack
+  - first:
+      74: 7400012
+    second: Armature|Hover
+  - first:
+      74: 7400014
+    second: Armature|Idle
+  - first:
+      74: 7400016
+    second: Armature|Jump
+  - first:
+      74: 7400018
+    second: Armature|Run
+  - first:
+      74: 7400020
+    second: Armature|Walk
+  - first:
+      74: 7400022
+    second: Torus.002|FullAttack
+  - first:
+      74: 7400024
+    second: Armature|RunAttack
+  - first:
+      74: 7400026
+    second: Armature|RunFlickAttack
+  - first:
+      74: 7400028
+    second: Armature|RunBackwards
+  - first:
+      74: 7400030
+    second: Armature|AttackIdle
+  - first:
+      74: 7400032
+    second: Armature|Fallback
+  - first:
+      74: 7400034
+    second: Armature|Fallforward
+  - first:
+      74: 7400036
+    second: Armature|Knockback1
+  - first:
+      74: 7400038
+    second: Armature|Knockback2
+  - first:
+      74: 7400040
+    second: Armature|Knockback3
+  - first:
+      74: 7400042
+    second: Armature|Knockforward1
+  - first:
+      74: 7400044
+    second: Armature|Dieback
+  - first:
+      74: 7400046
+    second: Armature|Dieforward
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      111: 11100000
+    second: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -235,7 +555,7 @@ ModelImporter:
       name: Material.014
     second: {fileID: 2100000, guid: 52f4419dd7243cf40a266089e4ea343c, type: 2}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 3
     materialSearch: 1
     materialLocation: 0
@@ -264,6 +584,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|FlickAttack
       takeName: Armature|FlickAttack
+      internalID: 0
       firstFrame: 0
       lastFrame: 15
       wrapMode: 0
@@ -292,6 +613,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|FullAttack
       takeName: Armature|FullAttack
+      internalID: 0
       firstFrame: 0
       lastFrame: 30
       wrapMode: 0
@@ -320,6 +642,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|Hover
       takeName: Armature|Hover
+      internalID: 0
       firstFrame: 0
       lastFrame: 20
       wrapMode: 0
@@ -348,6 +671,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|Idle
       takeName: Armature|Idle
+      internalID: 0
       firstFrame: 0
       lastFrame: 240
       wrapMode: 0
@@ -376,6 +700,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|Jump
       takeName: Armature|Jump
+      internalID: 0
       firstFrame: 0
       lastFrame: 20
       wrapMode: 0
@@ -404,6 +729,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|Run
       takeName: Armature|Run
+      internalID: 0
       firstFrame: 0
       lastFrame: 30
       wrapMode: 0
@@ -432,6 +758,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|Walk
       takeName: Armature|Walk
+      internalID: 0
       firstFrame: 0
       lastFrame: 29
       wrapMode: 0
@@ -460,6 +787,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|RunAttack
       takeName: Armature|RunAttack
+      internalID: 0
       firstFrame: 0
       lastFrame: 30
       wrapMode: 0
@@ -488,6 +816,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|RunFlickAttack
       takeName: Armature|RunFlickAttack
+      internalID: 0
       firstFrame: 0
       lastFrame: 15
       wrapMode: 0
@@ -516,6 +845,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|RunBackwards
       takeName: Armature|RunBackwards
+      internalID: 0
       firstFrame: 0
       lastFrame: 30
       wrapMode: 0
@@ -544,6 +874,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|Fallback
       takeName: Armature|Fallback
+      internalID: 0
       firstFrame: 1
       lastFrame: 60
       wrapMode: 0
@@ -572,6 +903,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|Fallforward
       takeName: Armature|Fallforward
+      internalID: 0
       firstFrame: 3
       lastFrame: 60
       wrapMode: 0
@@ -600,6 +932,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|Knockback1
       takeName: Armature|Knockback1
+      internalID: 0
       firstFrame: 1
       lastFrame: 30
       wrapMode: 0
@@ -628,6 +961,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|Knockback2
       takeName: Armature|Knockback2
+      internalID: 0
       firstFrame: 1
       lastFrame: 30
       wrapMode: 0
@@ -656,6 +990,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|Knockback3
       takeName: Armature|Knockback3
+      internalID: 0
       firstFrame: 1
       lastFrame: 40
       wrapMode: 0
@@ -684,6 +1019,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|Knockforward1
       takeName: Armature|Knockforward1
+      internalID: 0
       firstFrame: 3
       lastFrame: 30
       wrapMode: 0
@@ -712,6 +1048,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|AttackIdle
       takeName: Armature|AttackIdle
+      internalID: 0
       firstFrame: 0
       lastFrame: 60
       wrapMode: 0
@@ -740,6 +1077,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|Dieback
       takeName: Armature|Fallback
+      internalID: 0
       firstFrame: 0
       lastFrame: 40
       wrapMode: 0
@@ -768,7 +1106,8 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|Dieforward
       takeName: Armature|Fallforward
-      firstFrame: 0
+      internalID: 0
+      firstFrame: 1
       lastFrame: 30
       wrapMode: 0
       orientationOffsetY: 0
@@ -800,6 +1139,7 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 0
     importBlendShapes: 1
     importCameras: 0
@@ -807,18 +1147,19 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 0
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -827,10 +1168,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -840,13 +1181,16 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
