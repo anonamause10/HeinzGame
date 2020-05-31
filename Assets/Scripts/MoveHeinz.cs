@@ -5,7 +5,7 @@ using System.Collections;
 [DefaultExecutionOrder(100)]
 public class MoveHeinz : MonoBehaviour {
 	//public vars
-
+	//testcomment
 	public CharInput charInput;
 
 	protected float walkSpeed = 15;
