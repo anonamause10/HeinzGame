@@ -187,7 +187,7 @@ public class MoveHeinz : MonoBehaviour {
 				isJumping = false;
 			}
         }
-		if(!charInput.jumping&&charInput.jumpingPrev){
+		if(charInput.getJumpUp()){
 			isJumping = false;
 		}
 		if(controller.isGrounded){
@@ -197,7 +197,7 @@ public class MoveHeinz : MonoBehaviour {
 			jumpmode = (jumpTimeCounter>0.75)?1:2;
 		}
 		animator.SetInteger("jump",jumpmode);
-		if((charInput.jumping&&!charInput.jumpingPrev)&&!controller.isGrounded){
+		if((charInput.getJumpDown())&&!controller.isGrounded){
 			flying = true;
 			isJumping = true;
 		}
@@ -215,7 +215,7 @@ public class MoveHeinz : MonoBehaviour {
 		currentSpeed = Mathf.SmoothDamp (currentSpeed, charInput.inputDir.y==0?currentSpeed:targetSpeed, ref speedSmoothVelocity, 1f);
         moveVec = (transform.forward * currentSpeed);
 
-		if(charInput.jumping&&!charInput.jumpingPrev){
+		if(charInput.getJumpDown()){
 			flying = false;
 			transform.eulerAngles = Vector3.up*transform.eulerAngles.y;
 			outFly = true;
@@ -226,7 +226,7 @@ public class MoveHeinz : MonoBehaviour {
 
 	public virtual void attack(){
 		isAttacking = false;
-		if(charInput.switchSpell){
+		if(charInput.getSwitchSpellDown()){
 			spellIndex = (spellIndex+1)%spells.Length;
 			spell = (GameObject)Resources.Load("Prefabs/" + spells[spellIndex]);
 		}
@@ -250,7 +250,7 @@ public class MoveHeinz : MonoBehaviour {
 		if(!isAttacking&&attackFrameCounter>0){
 			attackFrameCounter-=1;
 		}
-		if(charInput.switchAttackMode){
+		if(charInput.getSwitchAttackDown()){
 			attackMode = !attackMode;
 			animator.SetBool("scope", attackMode);
 			if(OnAttackModeSwitch!=null){

@@ -12,7 +12,9 @@ public class CharInput : MonoBehaviour
     public bool jumping = false;
     public bool jumpingPrev = false;
     public bool switchAttackMode = false;
-    public bool switchSpell;
+    public bool switchAttackModePrev = false;
+    public bool switchSpell = false;
+    public bool switchSpellPrev = false;
     public bool spawnBoi;
     public int knockback;
     public Transform cameraT;
@@ -23,15 +25,42 @@ public class CharInput : MonoBehaviour
     
     public virtual void CollectInputs(){
         leftMouseDownPrev = leftMouseDown;
+        switchAttackModePrev = switchAttackMode;
+        switchAttackMode = false;
+        switchSpellPrev = switchSpell;
         jumpingPrev = jumping;
         jumping = Input.GetKey(KeyCode.Space);
         inputDir = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
         leftMouseDown = Input.GetMouseButton(0);
         switchSpell = Input.GetKeyDown(KeyCode.Q);
-        switchAttackMode = Input.GetMouseButtonDown(2);
+        switchAttackMode = Input.GetMouseButton(2);
         knockback = GetPressedNumber();
         walking = Input.GetKey (KeyCode.LeftShift);
         spawnBoi = Input.GetKeyDown(KeyCode.T);
+    }
+
+    public bool getJumpDown(){
+        return jumping&&!jumpingPrev;
+    }
+
+    public bool getJumpUp(){
+        return !jumping&&jumpingPrev;
+    }
+
+    public bool getSwitchAttackDown(){
+        return switchAttackMode&&!switchAttackModePrev;
+    }
+
+    public bool getSwitchAttackUp(){
+        return switchAttackMode&&switchAttackModePrev;
+    }
+
+    public bool getSwitchSpellDown(){
+        return switchSpell&&!switchSpellPrev;
+    }
+
+    public bool getSwitchSpellUp(){
+        return !switchSpell&&switchSpellPrev;
     }
 
     public int GetPressedNumber() {
