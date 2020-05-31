@@ -16,7 +16,7 @@ public class MoveBlock : MoveHeinz
     public override void Start(){
         target = GameObject.Find("paris");
         rend = GetComponent<Renderer>();
-        currMaterial = new Material(Shader.Find("Lightweight Render Pipeline/Lit"));
+        currMaterial = new Material(Shader.Find("Universal Render Pipeline/Lit"));
         rend.material = currMaterial;
 
         health = totalHealth;
